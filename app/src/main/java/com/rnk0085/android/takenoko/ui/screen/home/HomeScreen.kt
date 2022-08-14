@@ -45,7 +45,7 @@ fun HomeScreen(
 private fun HomeScreenPreview() {
     TakenokoTheme {
         HomeScreen(
-            onTimerClick = {},
+            onTimerClick = {}
         )
     }
 }

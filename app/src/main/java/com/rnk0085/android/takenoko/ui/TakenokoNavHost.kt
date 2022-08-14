@@ -16,17 +16,17 @@ fun TakenokoNavHost(
     onNavigateToDestination: (TakenokoNavigationDestination, String) -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    startDestination: String = HomeDestination.route,
+    startDestination: String = HomeDestination.route
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = modifier,
+        modifier = modifier
     ) {
         homeGraph(
             onTimerClick = {
                 onNavigateToDestination(
-                    TimerDestination, TimerDestination.route,
+                    TimerDestination, TimerDestination.route
                 )
             }
         )

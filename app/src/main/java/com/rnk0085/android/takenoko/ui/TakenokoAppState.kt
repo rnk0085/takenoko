@@ -9,7 +9,7 @@ import com.rnk0085.android.takenoko.ui.navigation.TakenokoNavigationDestination
 
 @Composable
 fun rememberTakenokoAppState(
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController = rememberNavController()
 ): TakenokoAppState {
     return remember(navController) {
         TakenokoAppState(navController)
@@ -17,11 +17,11 @@ fun rememberTakenokoAppState(
 }
 
 class TakenokoAppState(
-    val navController: NavHostController,
+    val navController: NavHostController
 ) {
     fun navigate(
         destination: TakenokoNavigationDestination,
-        route: String? = null,
+        route: String? = null
     ) {
         // https://developer.android.com/jetpack/androidx/releases/tracing#1.1.0
         trace("Navigation: $destination") {

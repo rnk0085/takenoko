@@ -10,11 +10,11 @@ object HomeDestination : TakenokoNavigationDestination {
 }
 
 fun NavGraphBuilder.homeGraph(
-    onTimerClick: () -> Unit,
+    onTimerClick: () -> Unit
 ) {
     composable(route = HomeDestination.route) {
         HomeScreen(
-            onTimerClick = onTimerClick,
+            onTimerClick = onTimerClick
         )
     }
 }

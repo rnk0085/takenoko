@@ -22,11 +22,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TakenokoApp(
-    appState: TakenokoAppState = rememberTakenokoAppState(),
+    appState: TakenokoAppState = rememberTakenokoAppState()
 ) {
     TakenokoNavHost(
         navController = appState.navController,
         onNavigateToDestination = appState::navigate,
-        onBackClick = appState::onBackClick,
+        onBackClick = appState::onBackClick
     )
 }
