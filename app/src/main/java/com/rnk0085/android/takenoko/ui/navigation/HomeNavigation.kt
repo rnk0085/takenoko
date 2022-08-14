@@ -9,8 +9,12 @@ object HomeDestination : TakenokoNavigationDestination {
     override val destination: String = "home_destination"
 }
 
-fun NavGraphBuilder.homeGraph() {
+fun NavGraphBuilder.homeGraph(
+    onTimerClick: () -> Unit,
+) {
     composable(route = HomeDestination.route) {
-        HomeScreen()
+        HomeScreen(
+            onTimerClick = onTimerClick,
+        )
     }
 }
