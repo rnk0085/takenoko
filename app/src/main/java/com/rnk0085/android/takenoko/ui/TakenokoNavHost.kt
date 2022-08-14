@@ -26,7 +26,8 @@ fun TakenokoNavHost(
         homeGraph(
             onTimerClick = {
                 onNavigateToDestination(
-                    TimerDestination, TimerDestination.route
+                    TimerDestination,
+                    TimerDestination.route
                 )
             }
         )
