@@ -31,16 +31,26 @@ data class HomeUiState(
                     totalStudyTime = 6000,
                     date = Date(1661260000000) // 2022/08/23
                 ),
-
-                // TODO: 5つ以上でも適切に表示できるように修正
-//                DayRecord(
-//                    totalStudyTime = 10000,
-//                    date = Date(1661310000000) // 2022/08/24
-//                ),
-//                DayRecord(
-//                    totalStudyTime = 100000,
-//                    date = Date(1661410000000) // 2022/08/25
-//                ),
+                DayRecord(
+                    totalStudyTime = 10000,
+                    date = Date(1661310000000) // 2022/08/24
+                ),
+                DayRecord(
+                    totalStudyTime = 13000,
+                    date = Date(1661410000000) // 2022/08/25
+                ),
+                DayRecord(
+                    totalStudyTime = 13100,
+                    date = Date(1661610000000)
+                ),
+                DayRecord(
+                    totalStudyTime = 14000,
+                    date = Date(1661910000000)
+                ),
+                DayRecord(
+                    totalStudyTime = 14500,
+                    date = Date(1663000000000)
+                ),
             )
         )
     }
