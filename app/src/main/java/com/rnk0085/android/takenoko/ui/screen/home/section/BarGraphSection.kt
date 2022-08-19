@@ -1,10 +1,12 @@
 package com.rnk0085.android.takenoko.ui.screen.home.section
 
+import android.util.Log
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +23,10 @@ fun BarGraphSection(
     dayRecords: List<DayRecord>, // 大きい順（最新順）
     barCount: Int = 5,
 ) {
+    SideEffect {
+        Log.d("test", "BarSection")
+    }
+
     // TODO: アニメーションがかかるのは一度限りになってしまっている
     var animationFlag by remember { mutableStateOf(false) }
     val animateHeight by animateFloatAsState(
