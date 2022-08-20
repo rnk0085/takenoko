@@ -1,7 +1,6 @@
 package com.rnk0085.android.takenoko.ui.screen.timer
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,12 +10,10 @@ import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerSetPage
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
-fun TimerScreen(
-    modifier: Modifier = Modifier
-) {
-    Box(modifier = modifier.fillMaxSize()) {
+fun TimerScreen() {
+    Box {
         TimerSetPage(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(horizontal = 16.dp),
         )
     }
 }

@@ -1,9 +1,9 @@
 package com.rnk0085.android.takenoko.ui.screen.timer.page
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -33,8 +33,14 @@ fun TimerSetPage(
     var pickerValue by remember { mutableStateOf<Hours>(FullHours(0, 5)) }
 
     LazyColumn(
-        modifier = modifier
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
+        item {
+            // 帳尻合わせるためにいれてる
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
         item {
             // タイマーセット部分
             HoursNumberPicker(
@@ -53,7 +59,7 @@ fun TimerSetPage(
                 }
             )
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Row(
                 modifier = modifier.fillMaxWidth(),
@@ -73,6 +79,16 @@ fun TimerSetPage(
 
         item {
             // スタートボタン
+            Button(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(bottom = 16.dp),
+                onClick = { /*TODO*/ },
+                enabled = pickerValue != FullHours(0, 0)
+            ) {
+                Text(text = "START")
+            }
         }
     }
 }
