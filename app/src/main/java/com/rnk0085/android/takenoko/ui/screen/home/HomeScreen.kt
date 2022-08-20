@@ -68,7 +68,7 @@ private fun HomeScreen(
                     .padding(horizontal = 8.dp)
                     .padding(top = 16.dp, bottom = barBottomPadding),
                 dayRecords = dayRecords,
-                barCount = barCount,
+                barCount = barCount
             )
 
             Column(
@@ -80,13 +80,12 @@ private fun HomeScreen(
                         .padding(top = screenHeight - barBottomPadding)
                         .padding(horizontal = 8.dp, vertical = 4.dp),
                     dayRecords = dayRecords,
-                    barCount = barCount,
+                    barCount = barCount
                 )
             }
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable

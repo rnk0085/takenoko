@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat
 fun DateSection(
     modifier: Modifier = Modifier,
     dayRecords: List<DayRecord>, // 大きい順（最新順）
-    barCount: Int = 5,
+    barCount: Int = 5
 ) {
     val dateFormat = SimpleDateFormat("MM/dd")
 
@@ -29,7 +29,7 @@ fun DateSection(
         // FIXME: 今はただ同間隔開けているだけなので、棒の数が少なかったり数が多すぎると不具合が起きる
         Row(
             modifier = modifier,
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             for (index in 0 until barCount) {
                 Text(text = dateFormat.format(dayRecords[index].date))
@@ -43,11 +43,11 @@ fun DateSection(
 @Composable
 private fun ProvideLayoutDirection(
     layoutDirection: LayoutDirection,
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
         LocalLayoutDirection provides layoutDirection,
-        content = content,
+        content = content
     )
 }
 

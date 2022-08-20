@@ -50,7 +50,7 @@ data class HomeUiState(
                 DayRecord(
                     totalStudyTime = 14500,
                     date = Date(1663000000000)
-                ),
+                )
             )
         )
     }

@@ -19,12 +19,12 @@ import com.rnk0085.android.takenoko.domain.model.DayRecord
 fun BarGraphSection(
     modifier: Modifier = Modifier,
     dayRecords: List<DayRecord>, // 大きい順（最新順）
-    barCount: Int = 5,
+    barCount: Int = 5
 ) {
     // TODO: アニメーションがかかるのは一度限りになってしまっている
     var animationFlag by remember { mutableStateOf(false) }
     val animateHeight by animateFloatAsState(
-        targetValue = if (animationFlag)  1f else 0f,
+        targetValue = if (animationFlag) 1f else 0f,
         animationSpec = tween(durationMillis = 5000, easing = FastOutSlowInEasing)
     )
 
