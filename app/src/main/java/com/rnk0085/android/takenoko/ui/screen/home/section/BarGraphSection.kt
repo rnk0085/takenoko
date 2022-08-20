@@ -1,12 +1,10 @@
 package com.rnk0085.android.takenoko.ui.screen.home.section
 
-import android.util.Log
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,10 +21,6 @@ fun BarGraphSection(
     dayRecords: List<DayRecord>, // 大きい順（最新順）
     barCount: Int = 5,
 ) {
-    SideEffect {
-        Log.d("test", "BarSection")
-    }
-
     // TODO: アニメーションがかかるのは一度限りになってしまっている
     var animationFlag by remember { mutableStateOf(false) }
     val animateHeight by animateFloatAsState(
@@ -36,7 +30,6 @@ fun BarGraphSection(
 
     // TODO: 処理ここで良いのか…？
     // TODO: テストコードが書きたい…
-    // TODO: 一番小さい値も活用したい
     Canvas(
         modifier = modifier
     ) {
@@ -51,7 +44,7 @@ fun BarGraphSection(
         // 各Barの横幅
         val barWidth = canvasWidth / (barCount + 1).toFloat()
 
-        // 各Barの間にある感覚のサイズ
+        // 各Barの間にある間隔のサイズ
         val secondPower = (barCount + 1) * (barCount + 1)
         val xSpace: Float = canvasWidth / secondPower.toFloat()
 

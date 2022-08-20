@@ -1,23 +1,15 @@
 package com.rnk0085.android.takenoko.ui.screen.home.section
 
 import android.annotation.SuppressLint
-import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.dp
 import com.rnk0085.android.takenoko.domain.model.DayRecord
 import com.rnk0085.android.takenoko.ui.screen.home.HomeUiState
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
@@ -31,11 +23,10 @@ fun DateSection(
     barCount: Int = 5,
 ) {
     val dateFormat = SimpleDateFormat("MM/dd")
-    ProvideLayoutDirection(layoutDirection = LayoutDirection.Rtl) {
-        SideEffect {
-            Log.d("test", "DateSection")
-        }
 
+    ProvideLayoutDirection(layoutDirection = LayoutDirection.Rtl) {
+        // TODO: 各棒グラフの真下に来て欲しい
+        // FIXME: 今はただ同間隔開けているだけなので、棒の数が少なかったり数が多すぎると不具合が起きる
         Row(
             modifier = modifier,
             horizontalArrangement = Arrangement.SpaceEvenly,
