@@ -1,6 +1,5 @@
 package com.rnk0085.android.takenoko.ui.screen.home
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,27 +27,10 @@ fun HomeScreen(
     onTimerClick: () -> Unit
 ) {
     val uiState: HomeUiState by viewModel.uiState.collectAsState()
-    Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(onClick = onTimerClick) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_baseline_timer_24),
-                    contentDescription = "TimerSet"
-                )
-            }
-        }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            HomeScreen(
-                uiState = uiState,
-                onTimerClick = onTimerClick
-            )
-        }
-    }
+    HomeScreen(
+        uiState = uiState,
+        onTimerClick = onTimerClick
+    )
 }
 
 @Composable
