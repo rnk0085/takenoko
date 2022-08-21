@@ -48,6 +48,7 @@ android {
 dependencies {
     // ViewModel utilities for Compose
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
 
     // Navigation
     implementation "androidx.navigation:navigation-compose:$nav_version"
