@@ -1,5 +1,6 @@
 package com.rnk0085.android.takenoko.ui.screen.timer.page
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,12 +26,19 @@ import com.chargemap.compose.numberpicker.FullHours
 import com.chargemap.compose.numberpicker.Hours
 import com.chargemap.compose.numberpicker.HoursNumberPicker
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
+import java.time.Duration
 
 @Composable
 fun TimerSetPage(
+    onStartTimer: (Duration) -> Unit,
+    timerDuration: Duration,
     modifier: Modifier = Modifier
 ) {
-    var pickerValue by remember { mutableStateOf<Hours>(FullHours(0, 5)) }
+    val nowSetHours = timerDuration.toHours().toInt()
+    val nowSetMinutes = timerDuration.toMinutes().toInt()
+    var pickerValue by remember { mutableStateOf<Hours>(FullHours(nowSetHours, nowSetMinutes)) }
+
+    Log.d("test", "$nowSetHours : $nowSetMinutes")
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -84,7 +92,9 @@ fun TimerSetPage(
                     .fillMaxWidth()
                     .height(50.dp)
                     .padding(bottom = 16.dp),
-                onClick = { /*TODO*/ },
+                onClick = {
+                    onStartTimer(Duration.ofMinutes(pickerValue.minutes.toLong()).plusHours(pickerValue.hours.toLong()))
+                },
                 enabled = pickerValue != FullHours(0, 0)
             ) {
                 Text(text = "START")
@@ -97,6 +107,9 @@ fun TimerSetPage(
 @Composable
 private fun TimerSetSectionPreview() {
     TakenokoTheme {
-        TimerSetPage()
+        TimerSetPage(
+            onStartTimer = {},
+            timerDuration = Duration.ofMinutes(5)
+        )
     }
 }
