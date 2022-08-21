@@ -28,7 +28,7 @@ import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
 fun TimerSetPage(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     var pickerValue by remember { mutableStateOf<Hours>(FullHours(0, 5)) }
 

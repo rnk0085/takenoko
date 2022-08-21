@@ -20,7 +20,7 @@ import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
 fun TimerRunningPage(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
