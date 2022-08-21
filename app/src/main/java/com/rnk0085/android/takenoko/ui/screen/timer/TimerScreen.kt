@@ -2,6 +2,7 @@ package com.rnk0085.android.takenoko.ui.screen.timer
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -47,8 +48,12 @@ private fun TimerScreen(
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
             }
-            TimerState.PAUSED -> {}
-            TimerState.FINISHED -> {}
+            TimerState.PAUSED -> {
+                Text(text = "PAUSED")
+            }
+            TimerState.FINISHED -> {
+                Text(text = "FINISHED")
+            }
         }
     }
 }
