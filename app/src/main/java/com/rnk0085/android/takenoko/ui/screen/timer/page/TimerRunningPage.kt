@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rnk0085.android.takenoko.ui.screen.timer.TimerState
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.time.Duration
 
@@ -23,6 +24,9 @@ import java.time.Duration
 fun TimerRunningPage(
     timerDuration: Duration,
     remainingTime: Duration,
+    timerState: TimerState,
+    onRestartClick: () -> Unit,
+    onPauseClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -57,9 +61,11 @@ fun TimerRunningPage(
                     .fillMaxWidth()
                     .height(50.dp)
                     .padding(bottom = 16.dp),
-                onClick = { /*TODO*/ }
+                onClick = if (timerState == TimerState.RUNNING) onPauseClick else onRestartClick
             ) {
-                Text(text = "START")
+                Text(
+                    text = if (timerState == TimerState.RUNNING) "PAUSED" else "RESTART"
+                )
             }
         }
     }
@@ -85,7 +91,10 @@ private fun TimerRunningPagePreview() {
     TakenokoTheme {
         TimerRunningPage(
             timerDuration = Duration.ofMinutes(5),
-            remainingTime = Duration.ofMinutes(5)
+            remainingTime = Duration.ofMinutes(5),
+            timerState = TimerState.RUNNING,
+            onRestartClick = {},
+            onPauseClick = {}
         )
     }
 }

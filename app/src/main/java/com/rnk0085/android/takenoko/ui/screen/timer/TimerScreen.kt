@@ -22,14 +22,18 @@ fun TimerScreen(
     val uiState: TimerUiState by viewModel.uiState.collectAsState()
     TimerScreen(
         uiState = uiState,
-        onStartTimer = viewModel::startTimer
+        onStartTimer = viewModel::setTimer,
+        onRestartClick = viewModel::startTimer,
+        onPauseClick = viewModel::pauseTimer
     )
 }
 
 @Composable
 private fun TimerScreen(
     uiState: TimerUiState,
-    onStartTimer: (Duration) -> Unit
+    onStartTimer: (Duration) -> Unit,
+    onRestartClick: () -> Unit,
+    onPauseClick: () -> Unit
 ) {
     Box {
         // TODO: 自動的に切り替えを行う
@@ -41,18 +45,19 @@ private fun TimerScreen(
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
             }
-            TimerState.RUNNING -> {
+            TimerState.FINISHED -> {
+                Text(text = "FINISHED")
+            }
+            else -> {
+                // RUNNING & PAUSED
                 TimerRunningPage(
                     timerDuration = uiState.settingTime,
                     remainingTime = uiState.remainingTime,
+                    timerState = uiState.timerState,
+                    onRestartClick = onRestartClick,
+                    onPauseClick = onPauseClick,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
-            }
-            TimerState.PAUSED -> {
-                Text(text = "PAUSED")
-            }
-            TimerState.FINISHED -> {
-                Text(text = "FINISHED")
             }
         }
     }

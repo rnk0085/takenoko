@@ -1,27 +1,23 @@
 package com.rnk0085.android.takenoko.ui.screen.timer
 
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import java.time.Duration
-import java.lang.Exception
 
 class TimerViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(TimerUiState())
     val uiState: StateFlow<TimerUiState> = _uiState
 
     private var timer: CountDownTimer? = null
+    private var remainingTime: Long? = null
 
-    fun startTimer(
-        timerDuration: Duration
-    ) {
+    fun startTimer() {
         timer = object : CountDownTimer(
-            timerDuration.toMillis(),
+            remainingTime!!,
             COUNTDOWN_INTERVAL
         ) {
             override fun onTick(millisUntilFinished: Long) {
@@ -31,6 +27,7 @@ class TimerViewModel : ViewModel() {
                         timerState = TimerState.RUNNING
                     )
                 }
+                remainingTime = millisUntilFinished
             }
 
             override fun onFinish() {
@@ -41,21 +38,31 @@ class TimerViewModel : ViewModel() {
                     )
                 }
             }
-        }
-
-        setTimer(timerDuration)
-        timer?.start()
+        }.start()
     }
 
-    private fun setTimer(
+    fun setTimer(
         timerDuration: Duration
     ) {
+        remainingTime = timerDuration.toMillis()
         _uiState.update {
             it.copy(
                 settingTime = timerDuration,
                 remainingTime = timerDuration
             )
         }
+        startTimer()
+    }
+
+    fun pauseTimer() {
+        timer?.cancel()
+        _uiState.update {
+            it.copy(
+                timerState = TimerState.PAUSED
+            )
+        }
+        Log.d("debug", "cancelTimer")
+        Log.d("debug", "remainingTime: $remainingTime")
     }
 
     companion object {
