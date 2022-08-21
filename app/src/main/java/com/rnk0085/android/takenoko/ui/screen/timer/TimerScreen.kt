@@ -36,14 +36,14 @@ private fun TimerScreen(
             TimerState.INITIAL -> {
                 TimerSetPage(
                     onStartTimer = onStartTimer,
-                    timerDuration = uiState.timerDuration,
+                    timerDuration = uiState.settingTime,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
             }
             TimerState.RUNNING -> {
                 TimerRunningPage(
-                    timerDuration = uiState.timerDuration,
-                    remainingTime = uiState.remainingTimer,
+                    timerDuration = uiState.settingTime,
+                    remainingTime = uiState.remainingTime,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
             }

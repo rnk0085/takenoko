@@ -4,10 +4,10 @@ import java.time.Duration
 
 data class TimerUiState(
     // セットした時間
-    val timerDuration: Duration = Duration.ofMinutes(5),
+    val settingTime: Duration = Duration.ofMinutes(5),
 
     // タイマーの残り時間
-    val remainingTimer: Duration = timerDuration,
+    val remainingTime: Duration = settingTime,
     val timerState: TimerState = TimerState.INITIAL
 )
 

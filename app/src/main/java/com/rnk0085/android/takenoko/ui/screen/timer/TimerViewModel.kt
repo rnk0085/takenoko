@@ -16,8 +16,8 @@ class TimerViewModel : ViewModel() {
     ) {
         _uiState.update {
             it.copy(
-                timerDuration = timerDuration,
-                remainingTimer = timerDuration
+                settingTime = timerDuration,
+                remainingTime = timerDuration
             )
         }
 
@@ -25,13 +25,13 @@ class TimerViewModel : ViewModel() {
     }
 
     private var timer: CountDownTimer = object : CountDownTimer(
-        _uiState.value.timerDuration.toMillis(),
+        _uiState.value.settingTime.toMillis(),
         COUNTDOWN_INTERVAL
     ) {
         override fun onTick(millisUntilFinished: Long) {
             _uiState.update {
                 it.copy(
-                    remainingTimer = Duration.ofMillis(millisUntilFinished),
+                    remainingTime = Duration.ofMillis(millisUntilFinished),
                     timerState = TimerState.RUNNING
                 )
             }
@@ -40,7 +40,7 @@ class TimerViewModel : ViewModel() {
         override fun onFinish() {
             _uiState.update {
                 it.copy(
-                    remainingTimer = Duration.ZERO,
+                    remainingTime = Duration.ZERO,
                     timerState = TimerState.FINISHED
                 )
             }
