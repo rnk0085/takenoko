@@ -17,9 +17,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
+import java.time.Duration
 
 @Composable
 fun TimerRunningPage(
+    timerDuration: Duration,
+    remainingTime: Duration,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -35,14 +38,14 @@ fun TimerRunningPage(
         item {
             // タイマー動かしている部分
             Text(
-                text = "00:00:00",
+                text = setTimerText(timerDuration),
                 color = Color.Gray,
                 fontSize = 24.sp
             )
 
             // TODO: 実際にタイマーを動かす
             Text(
-                text = "00:00:00",
+                text = setTimerText(remainingTime),
                 fontSize = 62.sp
             )
         }
@@ -62,10 +65,27 @@ fun TimerRunningPage(
     }
 }
 
+private fun setTimerText(
+    time: Duration
+) : String {
+    val hours = time.toHours()
+    val minutes = time.toMinutes()
+    val seconds = (time.toMillis() / 1000) % 60
+
+    val hoursText: String = if (hours in 0..9) "0$hours" else "$hours"
+    val minutesText: String = if (minutes in 0..9) "0$minutes" else "$minutes"
+    val secondsText: String = if (seconds in 0..9) "0$seconds" else "$seconds"
+
+    return "$hoursText：$minutesText：$secondsText"
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun TimerRunningPagePreview() {
     TakenokoTheme {
-        TimerRunningPage()
+        TimerRunningPage(
+            timerDuration = Duration.ofMinutes(5),
+            remainingTime = Duration.ofMinutes(5)
+        )
     }
 }

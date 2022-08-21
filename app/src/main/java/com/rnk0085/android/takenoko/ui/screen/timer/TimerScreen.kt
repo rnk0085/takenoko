@@ -42,6 +42,8 @@ private fun TimerScreen(
             }
             TimerState.RUNNING -> {
                 TimerRunningPage(
+                    timerDuration = uiState.timerDuration,
+                    remainingTime = uiState.remainingTimer,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
             }
