@@ -1,7 +1,12 @@
 package com.rnk0085.android.takenoko
 
 import android.content.Context
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.CombinedVibration
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,7 +23,6 @@ import com.rnk0085.android.takenoko.ui.screen.timer.TimerViewModel
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

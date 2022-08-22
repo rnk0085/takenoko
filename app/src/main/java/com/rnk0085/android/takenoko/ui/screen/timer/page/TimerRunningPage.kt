@@ -77,7 +77,7 @@ fun TimerRunningPage(
 
 private fun setTimerText(
     time: Duration
-) : String {
+): String {
     val hours = time.toHours()
     val minutes = time.toMinutes() % 60
     val seconds = (time.toMillis() / 1000) % 60
