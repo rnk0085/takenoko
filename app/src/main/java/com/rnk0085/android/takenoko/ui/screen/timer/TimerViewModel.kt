@@ -16,6 +16,7 @@ class TimerViewModel : ViewModel() {
     private var remainingTime: Long? = null
 
     fun startTimer() {
+        // FIXME: タイマーがズレている
         timer = object : CountDownTimer(
             remainingTime!!,
             COUNTDOWN_INTERVAL

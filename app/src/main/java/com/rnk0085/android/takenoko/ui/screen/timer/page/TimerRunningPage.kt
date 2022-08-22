@@ -48,7 +48,7 @@ fun TimerRunningPage(
                 fontSize = 24.sp
             )
 
-            // TODO: 実際にタイマーを動かす
+            // FIXME: タイマーがズレている
             Text(
                 text = setTimerText(remainingTime),
                 fontSize = 62.sp
