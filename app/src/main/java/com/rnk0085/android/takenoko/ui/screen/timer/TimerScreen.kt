@@ -17,7 +17,7 @@ import java.time.Duration
 
 @Composable
 fun TimerScreen(
-    viewModel: TimerViewModel = viewModel(),
+    viewModel: TimerViewModel
 ) {
     val uiState: TimerUiState by viewModel.uiState.collectAsState()
     TimerScreen(
@@ -67,6 +67,11 @@ private fun TimerScreen(
 @Composable
 private fun TimerScreenPreview() {
     TakenokoTheme {
-        TimerScreen()
+        TimerScreen(
+            uiState = TimerUiState(),
+            onStartTimer = {},
+            onRestartClick = {},
+            onPauseClick = {}
+        )
     }
 }

@@ -1,5 +1,6 @@
 package com.rnk0085.android.takenoko.ui.navigation
 
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.rnk0085.android.takenoko.ui.screen.timer.TimerScreen
@@ -11,6 +12,8 @@ object TimerDestination : TakenokoNavigationDestination {
 
 fun NavGraphBuilder.timerGraph() {
     composable(route = TimerDestination.route) {
-        TimerScreen()
+        TimerScreen(
+            viewModel = hiltViewModel()
+        )
     }
 }

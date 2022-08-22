@@ -16,8 +16,11 @@ import com.rnk0085.android.takenoko.ui.rememberTakenokoAppState
 import com.rnk0085.android.takenoko.ui.screen.timer.TimerState
 import com.rnk0085.android.takenoko.ui.screen.timer.TimerViewModel
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel: TimerViewModel by viewModels()
 
