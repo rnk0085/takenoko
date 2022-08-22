@@ -79,7 +79,7 @@ private fun setTimerText(
     time: Duration
 ) : String {
     val hours = time.toHours()
-    val minutes = time.toMinutes()
+    val minutes = time.toMinutes() % 60
     val seconds = (time.toMillis() / 1000) % 60
 
     Log.d("debug", "hours: $hours")
