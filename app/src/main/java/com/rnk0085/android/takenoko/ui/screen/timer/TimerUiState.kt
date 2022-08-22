@@ -8,7 +8,8 @@ data class TimerUiState(
 
     // タイマーの残り時間
     val remainingTime: Duration = settingTime,
-    val timerState: TimerState = TimerState.INITIAL
+    val timerState: TimerState = TimerState.INITIAL,
+    val isError: Boolean = false
 )
 
 enum class TimerState {

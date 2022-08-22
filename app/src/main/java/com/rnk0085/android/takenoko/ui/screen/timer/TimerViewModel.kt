@@ -3,14 +3,26 @@ package com.rnk0085.android.takenoko.ui.screen.timer
 import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.*
 import java.time.Duration
 
 class TimerViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(TimerUiState())
-    val uiState: StateFlow<TimerUiState> = _uiState
+    private val isErrorFlow = MutableStateFlow(false)
+
+    val uiState: StateFlow<TimerUiState> = combine(_uiState, isErrorFlow) { uiState, isError ->
+        TimerUiState(
+            settingTime = uiState.settingTime,
+            remainingTime = uiState.remainingTime,
+            timerState = uiState.timerState,
+            isError = isError
+        )
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(),
+        initialValue = TimerUiState()
+    )
 
     private var timer: CountDownTimer? = null
     private var remainingTime: Long? = null
