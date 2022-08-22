@@ -27,6 +27,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.d("debug", "MainActivity")
+
         // TODO: 振動する回数を決める
         val vibrationEffect = VibrationEffect.createWaveform(
             longArrayOf(1000, 300, 1000, 300, 1000, 300),

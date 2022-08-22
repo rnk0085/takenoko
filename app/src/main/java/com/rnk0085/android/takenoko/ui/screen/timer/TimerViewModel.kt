@@ -30,6 +30,10 @@ class TimerViewModel @Inject constructor() : ViewModel() {
     private var timer: CountDownTimer? = null
     private var remainingTime: Long? = null
 
+    init {
+        Log.d("debug", "TimerViewModel")
+    }
+
     fun startTimer() {
         // FIXME: タイマーがズレている
         timer = object : CountDownTimer(
@@ -44,6 +48,7 @@ class TimerViewModel @Inject constructor() : ViewModel() {
                     )
                 }
                 remainingTime = millisUntilFinished
+                Log.d("debug", "timer: $remainingTime")
             }
 
             override fun onFinish() {

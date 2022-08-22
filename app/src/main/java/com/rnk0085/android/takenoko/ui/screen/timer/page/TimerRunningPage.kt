@@ -1,5 +1,6 @@
 package com.rnk0085.android.takenoko.ui.screen.timer.page
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -80,6 +81,10 @@ private fun setTimerText(
     val hours = time.toHours()
     val minutes = time.toMinutes()
     val seconds = (time.toMillis() / 1000) % 60
+
+    Log.d("debug", "hours: $hours")
+    Log.d("debug", "minutes: $minutes")
+    Log.d("debug", "seconds: $seconds")
 
     val hoursText: String = if (hours in 0..9) "0$hours" else "$hours"
     val minutesText: String = if (minutes in 0..9) "0$minutes" else "$minutes"
