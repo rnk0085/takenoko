@@ -105,7 +105,7 @@ private fun setTimerText(
     val minutesText: String = if (minutes in 0..9) "0$minutes" else "$minutes"
     val secondsText: String = if (seconds in 0..9) "0$seconds" else "$seconds"
 
-    return "$hoursText：$minutesText：$secondsText"
+    return "$hoursText:$minutesText:$secondsText"
 }
 
 @Preview(showBackground = true)
