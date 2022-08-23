@@ -87,8 +87,13 @@ class TimerViewModel @Inject constructor() : ViewModel() {
                 timerState = TimerState.PAUSED
             )
         }
-        Log.d("debug", "cancelTimer")
+        Log.d("debug", "pauseTimer")
         Log.d("debug", "remainingTime: $remainingTime")
+    }
+
+    fun cancelTimer() {
+        timer?.cancel()
+        Log.d("debug", "cancelTimer")
     }
 
     companion object {

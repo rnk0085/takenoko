@@ -9,10 +9,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerRunningPage
 import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerSetPage
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerRunningPage
 import java.time.Duration
 
 @Composable
@@ -24,7 +23,8 @@ fun TimerScreen(
         uiState = uiState,
         onStartTimer = viewModel::setTimer,
         onRestartClick = viewModel::startTimer,
-        onPauseClick = viewModel::pauseTimer
+        onPauseClick = viewModel::pauseTimer,
+        cancelTimer = viewModel::cancelTimer
     )
 }
 
@@ -33,7 +33,8 @@ private fun TimerScreen(
     uiState: TimerUiState,
     onStartTimer: (Duration) -> Unit,
     onRestartClick: () -> Unit,
-    onPauseClick: () -> Unit
+    onPauseClick: () -> Unit,
+    cancelTimer: () -> Unit
 ) {
     Box {
         // TODO: 自動的に切り替えを行う
@@ -56,6 +57,7 @@ private fun TimerScreen(
                     timerState = uiState.timerState,
                     onRestartClick = onRestartClick,
                     onPauseClick = onPauseClick,
+                    cancelTimer = cancelTimer,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
             }
@@ -71,7 +73,8 @@ private fun TimerScreenPreview() {
             uiState = TimerUiState(),
             onStartTimer = {},
             onRestartClick = {},
-            onPauseClick = {}
+            onPauseClick = {},
+            cancelTimer = {}
         )
     }
 }

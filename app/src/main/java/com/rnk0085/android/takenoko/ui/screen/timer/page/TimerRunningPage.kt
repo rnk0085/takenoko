@@ -32,6 +32,7 @@ fun TimerRunningPage(
     timerState: TimerState,
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
+    cancelTimer: () ->  Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -84,7 +85,7 @@ fun TimerRunningPage(
 
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
-            onPauseClick()
+            cancelTimer()
         }
     }
 }
@@ -116,7 +117,8 @@ private fun TimerRunningPagePreview() {
             remainingTime = Duration.ofMinutes(5),
             timerState = TimerState.RUNNING,
             onRestartClick = {},
-            onPauseClick = {}
+            onPauseClick = {},
+            cancelTimer = {}
         )
     }
 }
