@@ -32,7 +32,7 @@ fun TimerRunningPage(
     timerState: TimerState,
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
-    cancelTimer: () ->  Unit,
+    cancelTimer: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
