@@ -40,6 +40,8 @@ class MainActivity : ComponentActivity() {
             -1
         )
 
+        // TODO: アプリがバックグラウンドにある場合でもバイブレーションするようにしたい
+        // バックグラウンドにいった瞬間 Flow の collect が止まるのが原因っぽい
         lifecycleScope.launch {
             viewModel.uiState
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
