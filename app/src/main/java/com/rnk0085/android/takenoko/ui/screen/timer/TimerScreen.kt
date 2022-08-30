@@ -3,6 +3,7 @@ package com.rnk0085.android.takenoko.ui.screen.timer
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,7 +27,8 @@ fun TimerScreen(
         onSetTimer = viewModel::setTimer,
         onRestartClick = viewModel::startTimer,
         onPauseClick = viewModel::pauseTimer,
-        cancelTimer = viewModel::cancelTimer
+        cancelTimer = viewModel::cancelTimer,
+        recordStudyTime = viewModel::recordStudyTime
     )
 }
 
@@ -36,7 +38,8 @@ private fun TimerScreen(
     onSetTimer: (Duration) -> Unit,
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
-    cancelTimer: () -> Unit
+    cancelTimer: () -> Unit,
+    recordStudyTime: () -> Unit
 ) {
     Box {
         // TODO: 自動的に切り替えを行う
@@ -49,7 +52,10 @@ private fun TimerScreen(
                 )
             }
             TimerState.FINISHED -> {
-                Text(text = "FINISHED")
+                // TODO: タイマー終了後の画面を作成する
+                Button(onClick = recordStudyTime) {
+                    Text(text = "FINISHED")
+                }
             }
             else -> {
                 // RUNNING & PAUSED
@@ -76,7 +82,8 @@ private fun TimerScreenPreview() {
             onSetTimer = {},
             onRestartClick = {},
             onPauseClick = {},
-            cancelTimer = {}
+            cancelTimer = {},
+            recordStudyTime = {}
         )
     }
 }

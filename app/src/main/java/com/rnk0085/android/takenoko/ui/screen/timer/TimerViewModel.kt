@@ -96,6 +96,15 @@ class TimerViewModel @Inject constructor() : ViewModel() {
         Log.d("debug", "cancelTimer")
     }
 
+    // TODO: 勉強時間を記録する処理を書く
+    fun recordStudyTime() {
+        _uiState.update {
+            it.copy(
+                timerState = TimerState.INITIAL
+            )
+        }
+    }
+
     companion object {
         private const val COUNTDOWN_INTERVAL: Long = 1000L
     }
