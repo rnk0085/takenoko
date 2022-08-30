@@ -30,7 +30,7 @@ import java.time.Duration
 
 @Composable
 fun TimerSetPage(
-    onStartTimer: (Duration) -> Unit,
+    onSetTimer: (Duration) -> Unit,
     timerDuration: Duration,
     modifier: Modifier = Modifier
 ) {
@@ -86,14 +86,14 @@ fun TimerSetPage(
         }
 
         item {
-            // スタートボタン
+            // スタートボタンを押すと、タイマーがセットされ動き出す
             Button(
                 modifier = modifier
                     .fillMaxWidth()
                     .height(50.dp)
                     .padding(bottom = 16.dp),
                 onClick = {
-                    onStartTimer(Duration.ofMinutes(pickerValue.minutes.toLong()).plusHours(pickerValue.hours.toLong()))
+                    onSetTimer(Duration.ofMinutes(pickerValue.minutes.toLong()).plusHours(pickerValue.hours.toLong()))
                 },
                 enabled = pickerValue != FullHours(0, 0)
             ) {
@@ -108,7 +108,7 @@ fun TimerSetPage(
 private fun TimerSetSectionPreview() {
     TakenokoTheme {
         TimerSetPage(
-            onStartTimer = {},
+            onSetTimer = {},
             timerDuration = Duration.ofMinutes(5)
         )
     }

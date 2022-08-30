@@ -21,7 +21,7 @@ fun TimerScreen(
     val uiState: TimerUiState by viewModel.uiState.collectAsState()
     TimerScreen(
         uiState = uiState,
-        onStartTimer = viewModel::setTimer,
+        onSetTimer = viewModel::setTimer,
         onRestartClick = viewModel::startTimer,
         onPauseClick = viewModel::pauseTimer,
         cancelTimer = viewModel::cancelTimer
@@ -31,7 +31,7 @@ fun TimerScreen(
 @Composable
 private fun TimerScreen(
     uiState: TimerUiState,
-    onStartTimer: (Duration) -> Unit,
+    onSetTimer: (Duration) -> Unit,
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
     cancelTimer: () -> Unit
@@ -41,7 +41,7 @@ private fun TimerScreen(
         when (uiState.timerState) {
             TimerState.INITIAL -> {
                 TimerSetPage(
-                    onStartTimer = onStartTimer,
+                    onSetTimer = onSetTimer,
                     timerDuration = uiState.settingTime,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
@@ -71,7 +71,7 @@ private fun TimerScreenPreview() {
     TakenokoTheme {
         TimerScreen(
             uiState = TimerUiState(),
-            onStartTimer = {},
+            onSetTimer = {},
             onRestartClick = {},
             onPauseClick = {},
             cancelTimer = {}
