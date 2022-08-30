@@ -23,7 +23,7 @@ import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = viewModel(),
+    viewModel: HomeViewModel,
     onTimerClick: () -> Unit
 ) {
     val uiState: HomeUiState by viewModel.uiState.collectAsState()
