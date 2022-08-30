@@ -40,22 +40,6 @@ class MainActivity : ComponentActivity() {
             -1
         )
 
-        // TODO: 期待通りの動作が出来たら削除する
-        // バイブレーション出来るか確認
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            Log.d("debug", "Build.VERSION_CODES.S")
-            val vibratorManager = applicationContext.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-            val combinedVibration = CombinedVibration.createParallel(vibrationEffect)
-            vibratorManager.vibrate(combinedVibration)
-        } else {
-            Log.d("debug", "Not Build.VERSION_CODES.S")
-            val vibrator = applicationContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            vibrator.vibrate(vibrationEffect)
-        }
-
-        Log.d("debug", "MainActivity")
-
-        // TODO: タイマーが終了した時にバイブレーションするようにしたい
         lifecycleScope.launch {
             viewModel.uiState
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
@@ -70,21 +54,6 @@ class MainActivity : ComponentActivity() {
                             Log.d("debug", "Not Build.VERSION_CODES.S")
                             val vibrator = applicationContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                             vibrator.vibrate(vibrationEffect)
-                        }
-                    }
-
-                    when (uiState.timerState) {
-                        TimerState.FINISHED -> {
-                            Log.d("debug", "FINISHED")
-                        }
-                        TimerState.INITIAL -> {
-                            Log.d("debug", "INITIAL")
-                        }
-                        TimerState.RUNNING -> {
-                            Log.d("debug", "RUNNING")
-                        }
-                        TimerState.PAUSED -> {
-                            Log.d("debug", "PAUSED")
                         }
                     }
                 }
