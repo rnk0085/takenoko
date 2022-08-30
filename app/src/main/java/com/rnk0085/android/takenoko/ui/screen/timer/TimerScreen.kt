@@ -52,7 +52,7 @@ private fun TimerScreen(
             else -> {
                 // RUNNING & PAUSED
                 TimerRunningPage(
-                    timerDuration = uiState.settingTime,
+                    settingTime = uiState.settingTime,
                     remainingTime = uiState.remainingTime,
                     timerState = uiState.timerState,
                     onRestartClick = onRestartClick,

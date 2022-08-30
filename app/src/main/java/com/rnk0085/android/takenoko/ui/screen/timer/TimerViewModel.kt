@@ -68,13 +68,13 @@ class TimerViewModel @Inject constructor() : ViewModel() {
     }
 
     fun setTimer(
-        timerDuration: Duration
+        settingTime: Duration
     ) {
-        remainingTime = timerDuration.toMillis()
+        remainingTime = settingTime.toMillis()
         _uiState.update {
             it.copy(
-                settingTime = timerDuration,
-                remainingTime = timerDuration
+                settingTime = settingTime,
+                remainingTime = settingTime
             )
         }
         startTimer()

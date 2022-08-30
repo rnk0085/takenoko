@@ -27,7 +27,7 @@ import java.time.Duration
 
 @Composable
 fun TimerRunningPage(
-    timerDuration: Duration,
+    settingTime: Duration,
     remainingTime: Duration,
     timerState: TimerState,
     onRestartClick: () -> Unit,
@@ -48,7 +48,7 @@ fun TimerRunningPage(
         item {
             // タイマー動かしている部分
             Text(
-                text = setTimerText(timerDuration),
+                text = setTimerText(settingTime),
                 color = Color.Gray,
                 fontSize = 24.sp
             )
@@ -113,7 +113,7 @@ private fun setTimerText(
 private fun TimerRunningPagePreview() {
     TakenokoTheme {
         TimerRunningPage(
-            timerDuration = Duration.ofMinutes(5),
+            settingTime = Duration.ofMinutes(5),
             remainingTime = Duration.ofMinutes(5),
             timerState = TimerState.RUNNING,
             onRestartClick = {},
