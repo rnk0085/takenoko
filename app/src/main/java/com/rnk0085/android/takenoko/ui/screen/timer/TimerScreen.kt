@@ -1,5 +1,6 @@
 package com.rnk0085.android.takenoko.ui.screen.timer
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
@@ -18,6 +19,7 @@ import java.time.Duration
 fun TimerScreen(
     viewModel: TimerViewModel
 ) {
+    Log.d("debug", "TimerScreen - TimerUiState: ${viewModel.uiState}")
     val uiState: TimerUiState by viewModel.uiState.collectAsState()
     TimerScreen(
         uiState = uiState,
