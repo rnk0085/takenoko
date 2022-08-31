@@ -3,14 +3,13 @@ package com.rnk0085.android.takenoko.ui.screen.timer
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerFinishedPage
 import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerRunningPage
 import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerSetPage
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
@@ -52,10 +51,10 @@ private fun TimerScreen(
                 )
             }
             TimerState.FINISHED -> {
-                // TODO: タイマー終了後の画面を作成する
-                Button(onClick = recordStudyTime) {
-                    Text(text = "FINISHED")
-                }
+                TimerFinishedPage(
+                    recordStudyTime = recordStudyTime,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
             }
             else -> {
                 // RUNNING & PAUSED
