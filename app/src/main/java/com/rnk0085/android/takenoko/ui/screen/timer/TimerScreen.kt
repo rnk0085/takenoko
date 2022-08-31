@@ -27,7 +27,7 @@ fun TimerScreen(
         onRestartClick = viewModel::startTimer,
         onPauseClick = viewModel::pauseTimer,
         cancelTimer = viewModel::cancelTimer,
-        recordStudyTime = viewModel::recordStudyTime
+        onRecordClick = viewModel::recordStudyTime
     )
 }
 
@@ -38,7 +38,7 @@ private fun TimerScreen(
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
     cancelTimer: () -> Unit,
-    recordStudyTime: () -> Unit
+    onRecordClick: () -> Unit
 ) {
     Box {
         // TODO: 自動的に切り替えを行う
@@ -52,7 +52,7 @@ private fun TimerScreen(
             }
             TimerState.FINISHED -> {
                 TimerFinishedPage(
-                    recordStudyTime = recordStudyTime,
+                    onRecordClick = onRecordClick,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
             }
@@ -82,7 +82,7 @@ private fun TimerScreenPreview() {
             onRestartClick = {},
             onPauseClick = {},
             cancelTimer = {},
-            recordStudyTime = {}
+            onRecordClick = {}
         )
     }
 }

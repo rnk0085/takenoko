@@ -18,7 +18,7 @@ import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
 fun TimerFinishedPage(
-    recordStudyTime: () -> Unit,
+    onRecordClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -43,7 +43,7 @@ fun TimerFinishedPage(
                     .fillMaxWidth()
                     .height(50.dp)
                     .padding(bottom = 16.dp),
-                onClick = recordStudyTime
+                onClick = onRecordClick
             ) {
                 Text(
                     text = "記録する"
@@ -58,7 +58,7 @@ fun TimerFinishedPage(
 private fun TimerFinishedPagePreview() {
     TakenokoTheme {
         TimerFinishedPage(
-            recordStudyTime = {}
+            onRecordClick = {}
         )
     }
 }
