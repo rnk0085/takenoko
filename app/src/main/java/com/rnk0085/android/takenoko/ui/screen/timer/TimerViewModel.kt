@@ -98,6 +98,7 @@ class TimerViewModel @Inject constructor() : ViewModel() {
 
     // TODO: 勉強時間を記録する処理を書く
     fun recordStudyTime() {
+        Log.d("debug", "recordStudyTime")
         _uiState.update {
             it.copy(
                 timerState = TimerState.INITIAL

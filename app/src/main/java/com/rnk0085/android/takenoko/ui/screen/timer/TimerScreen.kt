@@ -17,7 +17,8 @@ import java.time.Duration
 
 @Composable
 fun TimerScreen(
-    viewModel: TimerViewModel
+    viewModel: TimerViewModel,
+    onRecordClick: () -> Unit
 ) {
     Log.d("debug", "TimerScreen - TimerUiState: ${viewModel.uiState}")
     val uiState: TimerUiState by viewModel.uiState.collectAsState()
@@ -27,7 +28,7 @@ fun TimerScreen(
         onRestartClick = viewModel::startTimer,
         onPauseClick = viewModel::pauseTimer,
         cancelTimer = viewModel::cancelTimer,
-        onRecordClick = viewModel::recordStudyTime
+        onRecordClick = onRecordClick
     )
 }
 
