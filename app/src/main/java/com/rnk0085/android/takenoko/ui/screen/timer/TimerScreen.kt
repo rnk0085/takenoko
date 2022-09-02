@@ -28,7 +28,9 @@ fun TimerScreen(
         onRestartClick = viewModel::startTimer,
         onPauseClick = viewModel::pauseTimer,
         cancelTimer = viewModel::cancelTimer,
-        onRecordClick = onRecordClick
+        onRecordClick = onRecordClick,
+        showDialog = viewModel::showDialog,
+        closeDialog = viewModel::closeDialog
     )
 }
 
@@ -39,7 +41,9 @@ private fun TimerScreen(
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
     cancelTimer: () -> Unit,
-    onRecordClick: () -> Unit
+    onRecordClick: () -> Unit,
+    showDialog: () -> Unit,
+    closeDialog: () -> Unit
 ) {
     Box {
         // TODO: 自動的に切り替えを行う
@@ -63,6 +67,10 @@ private fun TimerScreen(
                     settingTime = uiState.settingTime,
                     remainingTime = uiState.remainingTime,
                     timerState = uiState.timerState,
+                    openDialog = uiState.openDialog,
+                    showDialog = showDialog,
+                    closeDialog = closeDialog,
+                    recordStudyTime = onRecordClick,
                     onRestartClick = onRestartClick,
                     onPauseClick = onPauseClick,
                     cancelTimer = cancelTimer,
@@ -83,7 +91,9 @@ private fun TimerScreenPreview() {
             onRestartClick = {},
             onPauseClick = {},
             cancelTimer = {},
-            onRecordClick = {}
+            onRecordClick = {},
+            showDialog = {},
+            closeDialog = {}
         )
     }
 }

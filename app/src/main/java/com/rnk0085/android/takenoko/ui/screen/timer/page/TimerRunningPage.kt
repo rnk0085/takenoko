@@ -16,8 +16,6 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,6 +33,10 @@ fun TimerRunningPage(
     settingTime: Duration,
     remainingTime: Duration,
     timerState: TimerState,
+    openDialog: Boolean,
+    showDialog: () -> Unit,
+    closeDialog: () -> Unit,
+    recordStudyTime: () -> Unit,
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
     cancelTimer: () -> Unit,
@@ -95,17 +97,14 @@ fun TimerRunningPage(
     }
 
     // 記録せずに戻ろうとした場合、ダイアログ表示
-    // TODO: 状態ホイスティングを行う
-    val openDialog = remember { mutableStateOf(false) }
-
     BackHandler(enabled = true) {
-        openDialog.value = true
+        showDialog()
     }
 
-    if (openDialog.value) {
+    if (openDialog) {
         AlertDialog(
             onDismissRequest = {
-                openDialog.value = false
+                closeDialog()
             },
             title = {
                 Text(text = "勉強時間を記録しますか？")
@@ -118,15 +117,17 @@ fun TimerRunningPage(
                     modifier = Modifier.padding(all = 8.dp),
                 ) {
                     Button(
-                        modifier = Modifier.weight(1f).padding(end = 8.dp),
-                        onClick = { openDialog.value = false }
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(end = 8.dp),
+                        onClick = closeDialog
                     ) {
                         Text("キャンセル")
                     }
 
                     Button(
                         modifier = Modifier.weight(1f),
-                        onClick = { openDialog.value = false }
+                        onClick = recordStudyTime
                     ) {
                         Text("記録する")
                     }
@@ -162,6 +163,10 @@ private fun TimerRunningPagePreview() {
             settingTime = Duration.ofMinutes(5),
             remainingTime = Duration.ofMinutes(5),
             timerState = TimerState.RUNNING,
+            openDialog = true,
+            showDialog = {},
+            closeDialog = {},
+            recordStudyTime = {},
             onRestartClick = {},
             onPauseClick = {},
             cancelTimer = {}
