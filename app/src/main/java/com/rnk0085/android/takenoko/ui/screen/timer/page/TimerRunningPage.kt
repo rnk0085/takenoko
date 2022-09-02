@@ -1,18 +1,23 @@
 package com.rnk0085.android.takenoko.ui.screen.timer.page
 
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -87,6 +92,47 @@ fun TimerRunningPage(
             lifecycleOwner.lifecycle.removeObserver(observer)
             cancelTimer()
         }
+    }
+
+    // 記録せずに戻ろうとした場合、ダイアログ表示
+    // TODO: 状態ホイスティングを行う
+    val openDialog = remember { mutableStateOf(false) }
+
+    BackHandler(enabled = true) {
+        openDialog.value = true
+    }
+
+    if (openDialog.value) {
+        AlertDialog(
+            onDismissRequest = {
+                openDialog.value = false
+            },
+            title = {
+                Text(text = "勉強時間を記録しますか？")
+            },
+            text = {
+                Text("これまでの勉強時間を記録できます")
+            },
+            buttons = {
+                Row(
+                    modifier = Modifier.padding(all = 8.dp),
+                ) {
+                    Button(
+                        modifier = Modifier.weight(1f).padding(end = 8.dp),
+                        onClick = { openDialog.value = false }
+                    ) {
+                        Text("キャンセル")
+                    }
+
+                    Button(
+                        modifier = Modifier.weight(1f),
+                        onClick = { openDialog.value = false }
+                    ) {
+                        Text("記録する")
+                    }
+                }
+            }
+        )
     }
 }
 
