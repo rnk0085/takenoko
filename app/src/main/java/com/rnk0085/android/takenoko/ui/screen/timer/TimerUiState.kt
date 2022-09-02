@@ -9,6 +9,7 @@ data class TimerUiState(
     // タイマーの残り時間
     val remainingTime: Duration = settingTime,
     val timerState: TimerState = TimerState.INITIAL,
+    val openDialog: Boolean = false,
     val isError: Boolean = false
 )
 

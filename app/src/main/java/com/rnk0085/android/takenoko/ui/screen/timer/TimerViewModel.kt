@@ -24,6 +24,7 @@ class TimerViewModel @Inject constructor() : ViewModel() {
             settingTime = uiState.settingTime,
             remainingTime = uiState.remainingTime,
             timerState = uiState.timerState,
+            openDialog = uiState.openDialog,
             isError = isError
         )
     }.stateIn(
@@ -101,7 +102,26 @@ class TimerViewModel @Inject constructor() : ViewModel() {
         Log.d("debug", "recordStudyTime")
         _uiState.update {
             it.copy(
-                timerState = TimerState.INITIAL
+                timerState = TimerState.INITIAL,
+                openDialog = false
+            )
+        }
+    }
+
+    fun showDialog() {
+        Log.d("debug", "openDialog")
+        _uiState.update {
+            it.copy(
+                openDialog = true
+            )
+        }
+    }
+
+    fun closeDialog() {
+        Log.d("debug", "closeDialog")
+        _uiState.update {
+            it.copy(
+                openDialog = false
             )
         }
     }
