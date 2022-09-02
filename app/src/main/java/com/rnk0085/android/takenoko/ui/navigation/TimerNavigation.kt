@@ -25,6 +25,10 @@ fun NavGraphBuilder.timerGraph(
                 // 一瞬だけタイマーセット画面が入っている
                 onBackClick()
                 viewModel.recordStudyTime()
+            },
+            onCancelClick = {
+                onBackClick()
+                viewModel.initializeUiState()
             }
         )
     }

@@ -39,6 +39,7 @@ fun TimerRunningPage(
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
     cancelTimer: () -> Unit,
+    onCancelClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -106,7 +107,7 @@ fun TimerRunningPage(
             text = "これまでの勉強時間を記録できます",
             onDismissRequest = closeDialog,
             leftButtonLabel = "キャンセル",
-            onLeftButtonClick = closeDialog,
+            onLeftButtonClick = onCancelClick,
             rightButtonLabel = "記録する",
             onRightButtonClick = recordStudyTime
         )
@@ -145,7 +146,8 @@ private fun TimerRunningPagePreview() {
             recordStudyTime = {},
             onRestartClick = {},
             onPauseClick = {},
-            cancelTimer = {}
+            cancelTimer = {},
+            onCancelClick = {}
         )
     }
 }

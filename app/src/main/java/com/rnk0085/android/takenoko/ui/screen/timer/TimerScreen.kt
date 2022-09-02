@@ -18,7 +18,8 @@ import java.time.Duration
 @Composable
 fun TimerScreen(
     viewModel: TimerViewModel,
-    onRecordClick: () -> Unit
+    onRecordClick: () -> Unit,
+    onCancelClick: () -> Unit
 ) {
     Log.d("debug", "TimerScreen - TimerUiState: ${viewModel.uiState}")
     val uiState: TimerUiState by viewModel.uiState.collectAsState()
@@ -30,7 +31,8 @@ fun TimerScreen(
         cancelTimer = viewModel::cancelTimer,
         onRecordClick = onRecordClick,
         showDialog = viewModel::showDialog,
-        closeDialog = viewModel::closeDialog
+        closeDialog = viewModel::closeDialog,
+        onCancelClick = onCancelClick
     )
 }
 
@@ -43,7 +45,8 @@ private fun TimerScreen(
     cancelTimer: () -> Unit,
     onRecordClick: () -> Unit,
     showDialog: () -> Unit,
-    closeDialog: () -> Unit
+    closeDialog: () -> Unit,
+    onCancelClick: () -> Unit
 ) {
     Box {
         // TODO: 自動的に切り替えを行う
@@ -74,7 +77,8 @@ private fun TimerScreen(
                     onRestartClick = onRestartClick,
                     onPauseClick = onPauseClick,
                     cancelTimer = cancelTimer,
-                    modifier = Modifier.padding(horizontal = 16.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    onCancelClick = onCancelClick
                 )
             }
         }
@@ -93,7 +97,8 @@ private fun TimerScreenPreview() {
             cancelTimer = {},
             onRecordClick = {},
             showDialog = {},
-            closeDialog = {}
+            closeDialog = {},
+            onCancelClick = {}
         )
     }
 }
