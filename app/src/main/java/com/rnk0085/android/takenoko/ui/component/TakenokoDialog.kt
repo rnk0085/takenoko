@@ -20,8 +20,8 @@ fun TakenokoDialog(
     onLeftButtonClick: () -> Unit,
     rightButtonLabel: String?,
     onRightButtonClick: () -> Unit,
-    modifier: Modifier = Modifier,
-){
+    modifier: Modifier = Modifier
+) {
     // TODO: スタイルなどを付ける
     AlertDialog(
         modifier = modifier,
@@ -38,7 +38,7 @@ fun TakenokoDialog(
         },
         buttons = {
             Row(
-                modifier = Modifier.padding(all = 8.dp),
+                modifier = Modifier.padding(all = 8.dp)
             ) {
                 leftButtonLabel?.let {
                     Button(
