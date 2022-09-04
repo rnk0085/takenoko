@@ -1,5 +1,6 @@
 package com.rnk0085.android.takenoko.ui.screen.timer.page
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -59,6 +60,12 @@ fun TimerFinishedPage(
             }
         }
     }
+
+    // TODO: ダイアログ表示
+    BackHandler(
+        enabled = true,
+        onBack = onRecordClick
+    )
 }
 
 private fun setTimeText(
