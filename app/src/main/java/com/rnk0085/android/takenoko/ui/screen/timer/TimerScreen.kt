@@ -61,6 +61,7 @@ private fun TimerScreen(
             TimerState.FINISHED -> {
                 TimerFinishedPage(
                     onRecordClick = onRecordClick,
+                    settingTime = uiState.settingTime,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
             }

@@ -14,11 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
+import java.time.Duration
 
 @Composable
 fun TimerFinishedPage(
     onRecordClick: () -> Unit,
+    settingTime: Duration,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -32,7 +35,12 @@ fun TimerFinishedPage(
         }
 
         item {
-            Text(text = "作業時間 XX時間XX分")
+            Text(text = "作業時間")
+
+            Text(
+                text = setTimeText(settingTime),
+                fontSize = 62.sp
+            )
 
             Text(text = "お疲れ様でした！")
         }
@@ -53,12 +61,44 @@ fun TimerFinishedPage(
     }
 }
 
+private fun setTimeText(
+    time: Duration
+): String {
+    val hours = time.toHours()
+    val minutes = time.toMinutes() % 60
+
+    return if (hours == 0L) "${minutes}分" else if (minutes == 0L) "${hours}時間" else "${hours}時間${minutes}分"
+}
+
 @Preview(showBackground = true)
 @Composable
-private fun TimerFinishedPagePreview() {
+private fun TimerFinishedPagePreview1() {
     TakenokoTheme {
         TimerFinishedPage(
-            onRecordClick = {}
+            onRecordClick = {},
+            settingTime = Duration.ofMinutes(5)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TimerFinishedPagePreview2() {
+    TakenokoTheme {
+        TimerFinishedPage(
+            onRecordClick = {},
+            settingTime = Duration.ofHours(1)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TimerFinishedPagePreview3() {
+    TakenokoTheme {
+        TimerFinishedPage(
+            onRecordClick = {},
+            settingTime = Duration.ofMinutes(5).plusHours(1)
         )
     }
 }
