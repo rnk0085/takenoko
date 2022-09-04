@@ -90,7 +90,7 @@ private fun TimerScreen(
 private fun TimerScreenPreview() {
     TakenokoTheme {
         TimerScreen(
-            uiState = TimerUiState(),
+            uiState = TimerUiState.InitialValue,
             onSetTimer = {},
             onRestartClick = {},
             onPauseClick = {},
