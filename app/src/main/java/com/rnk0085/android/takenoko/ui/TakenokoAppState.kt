@@ -2,9 +2,9 @@ package com.rnk0085.android.takenoko.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.tracing.trace
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import androidx.tracing.trace
 import com.rnk0085.android.takenoko.ui.navigation.TakenokoNavigationDestination
 
 @Composable
@@ -26,6 +26,20 @@ class TakenokoAppState(
         // https://developer.android.com/jetpack/androidx/releases/tracing#1.1.0
         trace("Navigation: $destination") {
             navController.navigate(route ?: destination.route)
+        }
+    }
+
+    fun navigateWithPopUpTO(
+        destination: TakenokoNavigationDestination,
+        route: String? = null,
+        popUpDestination: TakenokoNavigationDestination
+    ) {
+        trace("NavigationNotReturn: $destination") {
+            navController.navigate(route ?: destination.route) {
+                popUpTo(popUpDestination.route) {
+                    inclusive = true
+                }
+            }
         }
     }
 

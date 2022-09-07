@@ -16,6 +16,7 @@ import com.rnk0085.android.takenoko.ui.navigation.topGraph
 fun TakenokoNavHost(
     navController: NavHostController,
     onNavigateToDestination: (TakenokoNavigationDestination, String) -> Unit,
+    onNavigateToDestinationPopUpTo: (TakenokoNavigationDestination, String, TakenokoNavigationDestination) -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     startDestination: String = TopDestination.route
@@ -27,9 +28,10 @@ fun TakenokoNavHost(
     ) {
         topGraph(
             navigateToHome = {
-                onNavigateToDestination(
+                onNavigateToDestinationPopUpTo(
                     HomeDestination,
-                    HomeDestination.route
+                    HomeDestination.route,
+                    TopDestination
                 )
             }
         )

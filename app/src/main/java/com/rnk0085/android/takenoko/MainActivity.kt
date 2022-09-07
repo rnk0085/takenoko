@@ -76,6 +76,7 @@ fun TakenokoApp(
     TakenokoNavHost(
         navController = appState.navController,
         onNavigateToDestination = appState::navigate,
+        onNavigateToDestinationPopUpTo = appState::navigateWithPopUpTO,
         onBackClick = appState::onBackClick
     )
 }
