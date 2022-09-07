@@ -9,6 +9,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -20,6 +22,19 @@ import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
 fun TopScreen(
+    viewModel: TopViewModel,
+    navigateToHome: () -> Unit
+) {
+   val uiState: TopUiState by viewModel.uiState.collectAsState()
+   TopScreen(
+       uiState = uiState,
+       navigateToHome = navigateToHome
+   )
+}
+
+@Composable
+fun TopScreen(
+    uiState: TopUiState,
     navigateToHome: () -> Unit
 ) {
     BoxWithConstraints(
@@ -73,6 +88,7 @@ fun TakenokoCharacterImagePreview() {
 fun TopScreenPreview() {
     TakenokoTheme {
         TopScreen(
+            uiState = TopUiState.InitialValue,
             navigateToHome = {}
         )
     }

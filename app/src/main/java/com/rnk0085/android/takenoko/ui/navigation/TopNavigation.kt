@@ -1,5 +1,6 @@
 package com.rnk0085.android.takenoko.ui.navigation
 
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.rnk0085.android.takenoko.ui.screen.top.TopScreen
@@ -14,6 +15,7 @@ fun NavGraphBuilder.topGraph(
 ) {
     composable(route = TopDestination.route) {
         TopScreen(
+            viewModel = hiltViewModel(),
             navigateToHome = navigateToHome
         )
     }
