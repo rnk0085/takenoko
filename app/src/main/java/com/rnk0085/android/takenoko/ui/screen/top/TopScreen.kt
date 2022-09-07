@@ -1,8 +1,10 @@
 package com.rnk0085.android.takenoko.ui.screen.top
 
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
@@ -45,15 +47,26 @@ fun TopScreen(
                 .padding(8.dp)
         ) {
             item {
+                Spacer(modifier = Modifier.height(16.dp))
+
                 TopPraiseSection(
                     praiseMessage = uiState.praiseMessage,
                     screenWidth = screenWidth,
-                    modifier = Modifier.fillMaxWidth().padding(8.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp)
                 )
             }
 
             item {
-                Button(onClick = navigateToHome) {
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = navigateToHome,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp)
+                ) {
                     Text(text = "HOMEへ")
                 }
             }
