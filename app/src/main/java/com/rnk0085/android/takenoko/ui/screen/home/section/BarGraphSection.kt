@@ -58,7 +58,7 @@ fun BarGraphSection(
 
         for (index in 0 until barCount) {
             drawRect(
-                color = Color.Gray,
+                color = Color(0xFF32CD00),
                 topLeft = Offset(
                     x = xSpace * (barCount - index) + barWidth * (barCount - index - 1),
                     y = calcY(canvasHeight, heightLists[index]) + heightLists[index]

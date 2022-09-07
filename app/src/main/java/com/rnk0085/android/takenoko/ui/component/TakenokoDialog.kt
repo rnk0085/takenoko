@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -41,7 +42,7 @@ fun TakenokoDialog(
                 modifier = Modifier.padding(all = 8.dp)
             ) {
                 leftButtonLabel?.let {
-                    Button(
+                    OutlinedButton(
                         modifier = Modifier
                             .weight(1f)
                             .padding(end = 8.dp),

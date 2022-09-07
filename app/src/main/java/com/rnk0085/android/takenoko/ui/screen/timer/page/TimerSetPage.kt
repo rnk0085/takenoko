@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,7 +55,7 @@ fun TimerSetPage(
             // タイマーセット部分
             HoursNumberPicker(
                 modifier = Modifier.padding(horizontal = 8.dp),
-                dividersColor = MaterialTheme.colors.primary,
+                dividersColor = MaterialTheme.colors.secondary,
                 value = pickerValue,
                 onValueChange = {
                     pickerValue = it
@@ -64,7 +66,7 @@ fun TimerSetPage(
                         textAlign = TextAlign.Center,
                         text = ":"
                     )
-                }
+                },
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -73,13 +75,31 @@ fun TimerSetPage(
                 modifier = modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Button(onClick = { pickerValue = FullHours(0, 5) }) {
+                Button(
+                    onClick = { pickerValue = FullHours(0, 5) },
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = MaterialTheme.colors.secondary,
+                        contentColor = Color.White
+                    )
+                ) {
                     Text(text = "5分")
                 }
-                Button(onClick = { pickerValue = FullHours(0, 10) }) {
+                Button(
+                    onClick = { pickerValue = FullHours(0, 10) },
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = MaterialTheme.colors.secondary,
+                        contentColor = Color.White
+                    )
+                ) {
                     Text(text = "10分")
                 }
-                Button(onClick = { pickerValue = FullHours(0, 30) }) {
+                Button(
+                    onClick = { pickerValue = FullHours(0, 30) },
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = MaterialTheme.colors.secondary,
+                        contentColor = Color.White
+                    )
+                ) {
                     Text(text = "30分")
                 }
             }
@@ -92,6 +112,11 @@ fun TimerSetPage(
                     .fillMaxWidth()
                     .height(50.dp)
                     .padding(bottom = 16.dp),
+//                colors = ButtonDefaults.textButtonColors(
+//                    backgroundColor = Color(0xFFFFA000),
+//                    contentColor = Color.Black,
+//                    disabledContentColor = Color(0xFFFFFF74)
+//                ),
                 onClick = {
                     onSetTimer(Duration.ofMinutes(pickerValue.minutes.toLong()).plusHours(pickerValue.hours.toLong()))
                 },
