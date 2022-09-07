@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TimerViewModel @Inject constructor() : ViewModel() {
-    private val _uiState = MutableStateFlow(TimerUiState())
+    private val _uiState = MutableStateFlow(TimerUiState.InitialValue)
     private val isErrorFlow = MutableStateFlow(false)
 
     val uiState: StateFlow<TimerUiState> = combine(_uiState, isErrorFlow) { uiState, isError ->
@@ -24,12 +24,13 @@ class TimerViewModel @Inject constructor() : ViewModel() {
             settingTime = uiState.settingTime,
             remainingTime = uiState.remainingTime,
             timerState = uiState.timerState,
+            openDialog = uiState.openDialog,
             isError = isError
         )
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(),
-        initialValue = TimerUiState()
+        initialValue = TimerUiState.InitialValue
     )
 
     private var timer: CountDownTimer? = null
@@ -98,10 +99,31 @@ class TimerViewModel @Inject constructor() : ViewModel() {
 
     // TODO: 勉強時間を記録する処理を書く
     fun recordStudyTime() {
+        Log.d("debug", "recordStudyTime")
+        initializeUiState()
+    }
+
+    fun showDialog() {
+        Log.d("debug", "openDialog")
         _uiState.update {
             it.copy(
-                timerState = TimerState.INITIAL
+                openDialog = true
             )
+        }
+    }
+
+    fun closeDialog() {
+        Log.d("debug", "closeDialog")
+        _uiState.update {
+            it.copy(
+                openDialog = false
+            )
+        }
+    }
+
+    fun initializeUiState() {
+        _uiState.update {
+            TimerUiState.InitialValue
         }
     }
 

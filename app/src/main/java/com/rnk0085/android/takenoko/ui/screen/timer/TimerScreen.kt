@@ -3,14 +3,13 @@ package com.rnk0085.android.takenoko.ui.screen.timer
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerFinishedPage
 import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerRunningPage
 import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerSetPage
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
@@ -18,7 +17,9 @@ import java.time.Duration
 
 @Composable
 fun TimerScreen(
-    viewModel: TimerViewModel
+    viewModel: TimerViewModel,
+    onRecordClick: () -> Unit,
+    onCancelClick: () -> Unit
 ) {
     Log.d("debug", "TimerScreen - TimerUiState: ${viewModel.uiState}")
     val uiState: TimerUiState by viewModel.uiState.collectAsState()
@@ -28,7 +29,10 @@ fun TimerScreen(
         onRestartClick = viewModel::startTimer,
         onPauseClick = viewModel::pauseTimer,
         cancelTimer = viewModel::cancelTimer,
-        recordStudyTime = viewModel::recordStudyTime
+        onRecordClick = onRecordClick,
+        showDialog = viewModel::showDialog,
+        closeDialog = viewModel::closeDialog,
+        onCancelClick = onCancelClick
     )
 }
 
@@ -39,7 +43,10 @@ private fun TimerScreen(
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
     cancelTimer: () -> Unit,
-    recordStudyTime: () -> Unit
+    onRecordClick: () -> Unit,
+    showDialog: () -> Unit,
+    closeDialog: () -> Unit,
+    onCancelClick: () -> Unit
 ) {
     Box {
         // TODO: 自動的に切り替えを行う
@@ -52,10 +59,11 @@ private fun TimerScreen(
                 )
             }
             TimerState.FINISHED -> {
-                // TODO: タイマー終了後の画面を作成する
-                Button(onClick = recordStudyTime) {
-                    Text(text = "FINISHED")
-                }
+                TimerFinishedPage(
+                    onRecordClick = onRecordClick,
+                    settingTime = uiState.settingTime,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
             }
             else -> {
                 // RUNNING & PAUSED
@@ -63,10 +71,15 @@ private fun TimerScreen(
                     settingTime = uiState.settingTime,
                     remainingTime = uiState.remainingTime,
                     timerState = uiState.timerState,
+                    openDialog = uiState.openDialog,
+                    showDialog = showDialog,
+                    closeDialog = closeDialog,
+                    recordStudyTime = onRecordClick,
                     onRestartClick = onRestartClick,
                     onPauseClick = onPauseClick,
                     cancelTimer = cancelTimer,
-                    modifier = Modifier.padding(horizontal = 16.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    onCancelClick = onCancelClick
                 )
             }
         }
@@ -78,12 +91,15 @@ private fun TimerScreen(
 private fun TimerScreenPreview() {
     TakenokoTheme {
         TimerScreen(
-            uiState = TimerUiState(),
+            uiState = TimerUiState.InitialValue,
             onSetTimer = {},
             onRestartClick = {},
             onPauseClick = {},
             cancelTimer = {},
-            recordStudyTime = {}
+            onRecordClick = {},
+            showDialog = {},
+            closeDialog = {},
+            onCancelClick = {}
         )
     }
 }

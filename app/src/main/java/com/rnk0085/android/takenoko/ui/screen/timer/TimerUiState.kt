@@ -4,13 +4,24 @@ import java.time.Duration
 
 data class TimerUiState(
     // セットした時間
-    val settingTime: Duration = Duration.ofMinutes(5),
+    val settingTime: Duration,
 
     // タイマーの残り時間
-    val remainingTime: Duration = settingTime,
-    val timerState: TimerState = TimerState.INITIAL,
-    val isError: Boolean = false
-)
+    val remainingTime: Duration,
+    val timerState: TimerState,
+    val openDialog: Boolean,
+    val isError: Boolean
+) {
+    companion object {
+        val InitialValue = TimerUiState(
+            settingTime = Duration.ofMinutes(5),
+            remainingTime = Duration.ofMinutes(5),
+            timerState = TimerState.INITIAL,
+            openDialog = false,
+            isError = false
+        )
+    }
+}
 
 enum class TimerState {
     INITIAL,

@@ -31,6 +31,8 @@ fun TakenokoNavHost(
                 )
             }
         )
-        timerGraph()
+        timerGraph(
+            onBackClick = onBackClick
+        )
     }
 }

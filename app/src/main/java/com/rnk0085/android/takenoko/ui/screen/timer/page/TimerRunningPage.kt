@@ -1,6 +1,7 @@
 package com.rnk0085.android.takenoko.ui.screen.timer.page
 
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.LifecycleEventObserver
+import com.rnk0085.android.takenoko.ui.component.TakenokoDialog
 import com.rnk0085.android.takenoko.ui.screen.timer.TimerState
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.time.Duration
@@ -30,9 +32,14 @@ fun TimerRunningPage(
     settingTime: Duration,
     remainingTime: Duration,
     timerState: TimerState,
+    openDialog: Boolean,
+    showDialog: () -> Unit,
+    closeDialog: () -> Unit,
+    recordStudyTime: () -> Unit,
     onRestartClick: () -> Unit,
     onPauseClick: () -> Unit,
     cancelTimer: () -> Unit,
+    onCancelClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -88,6 +95,23 @@ fun TimerRunningPage(
             cancelTimer()
         }
     }
+
+    // 記録せずに戻ろうとした場合、ダイアログ表示
+    BackHandler(enabled = true) {
+        showDialog()
+    }
+
+    if (openDialog) {
+        TakenokoDialog(
+            title = "勉強時間を記録しますか？",
+            text = "これまでの勉強時間を記録できます",
+            onDismissRequest = closeDialog,
+            leftButtonLabel = "キャンセル",
+            onLeftButtonClick = onCancelClick,
+            rightButtonLabel = "記録する",
+            onRightButtonClick = recordStudyTime
+        )
+    }
 }
 
 private fun setTimerText(
@@ -116,9 +140,14 @@ private fun TimerRunningPagePreview() {
             settingTime = Duration.ofMinutes(5),
             remainingTime = Duration.ofMinutes(5),
             timerState = TimerState.RUNNING,
+            openDialog = true,
+            showDialog = {},
+            closeDialog = {},
+            recordStudyTime = {},
             onRestartClick = {},
             onPauseClick = {},
-            cancelTimer = {}
+            cancelTimer = {},
+            onCancelClick = {}
         )
     }
 }
