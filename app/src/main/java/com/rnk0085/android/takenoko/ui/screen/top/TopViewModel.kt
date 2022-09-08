@@ -2,8 +2,11 @@ package com.rnk0085.android.takenoko.ui.screen.top
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rnk0085.android.takenoko.domain.model.StudyRecord
+import com.rnk0085.android.takenoko.domain.usecase.top.GetStudyRecordsUseCase
 import com.rnk0085.android.takenoko.domain.usecase.top.TopPraiseMessageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -13,10 +16,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopViewModel @Inject constructor(
-    topPraiseMessageUseCase: TopPraiseMessageUseCase
+    topPraiseMessageUseCase: TopPraiseMessageUseCase,
+    getStudyRecordsUseCase: GetStudyRecordsUseCase
 ) : ViewModel() {
+    // TODO: Loading と Error 処理
     private val isLoadingFlow = MutableStateFlow(false)
     private val isErrorFlow = MutableStateFlow(false)
+    private val studyRecordsFlow: Flow<List<StudyRecord>?> = getStudyRecordsUseCase.invoke()
 
     private val praiseMessage: String
 
@@ -27,12 +33,14 @@ class TopViewModel @Inject constructor(
 
     val uiState: StateFlow<TopUiState> = combine(
         isLoadingFlow,
-        isErrorFlow
-    ) { isLoading, isError ->
+        isErrorFlow,
+        studyRecordsFlow
+    ) { isLoading, isError, studyRecords ->
         TopUiState(
             isLoading = isLoading,
             isError = isError,
-            praiseMessage = praiseMessage
+            praiseMessage = praiseMessage,
+            studyRecordList = studyRecords ?: emptyList()
         )
     }.stateIn(
         viewModelScope,
