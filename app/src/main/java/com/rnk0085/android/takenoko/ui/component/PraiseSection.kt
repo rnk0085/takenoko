@@ -1,4 +1,4 @@
-package com.rnk0085.android.takenoko.ui.screen.top.section
+package com.rnk0085.android.takenoko.ui.component
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
@@ -15,11 +15,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rnk0085.android.takenoko.R
-import com.rnk0085.android.takenoko.ui.component.TakenokoCharacterImage
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
-fun TopPraiseSection(
+fun PraiseSection(
     praiseMessage: String,
     screenWidth: Dp,
     modifier: Modifier = Modifier
@@ -54,7 +53,7 @@ fun TopPraiseSection(
 @Composable
 private fun TopPraiseSectionPreview() {
     TakenokoTheme {
-        TopPraiseSection(
+        PraiseSection(
             praiseMessage = "3日連続だね！すごい！！！",
             screenWidth = 360.dp
         )

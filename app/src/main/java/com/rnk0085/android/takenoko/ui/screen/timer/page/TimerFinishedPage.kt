@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rnk0085.android.takenoko.ui.screen.top.section.TopPraiseSection
+import com.rnk0085.android.takenoko.ui.component.PraiseSection
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.time.Duration
 
@@ -49,7 +49,7 @@ fun TimerFinishedPage(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            TopPraiseSection(
+            PraiseSection(
                 praiseMessage = praiseMessage,
                 screenWidth = screenWidth,
                 modifier = modifier

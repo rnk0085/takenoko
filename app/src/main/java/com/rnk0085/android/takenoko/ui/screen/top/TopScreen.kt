@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rnk0085.android.takenoko.ui.screen.top.section.TopPraiseSection
+import com.rnk0085.android.takenoko.ui.component.PraiseSection
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
@@ -54,7 +54,7 @@ fun TopScreen(
                 item {
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    TopPraiseSection(
+                    PraiseSection(
                         praiseMessage = uiState.praiseMessage,
                         screenWidth = screenWidth,
                         modifier = Modifier
