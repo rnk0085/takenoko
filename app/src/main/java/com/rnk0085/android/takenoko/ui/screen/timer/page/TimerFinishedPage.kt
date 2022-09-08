@@ -13,10 +13,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rnk0085.android.takenoko.R
 import com.rnk0085.android.takenoko.ui.component.PraiseSection
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.time.Duration
@@ -52,6 +54,7 @@ fun TimerFinishedPage(
             PraiseSection(
                 praiseMessage = praiseMessage,
                 screenWidth = screenWidth,
+                painter = painterResource(id = R.drawable.character3),
                 modifier = modifier
             )
         }

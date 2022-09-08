@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -21,6 +22,7 @@ import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 fun PraiseSection(
     praiseMessage: String,
     screenWidth: Dp,
+    painter: Painter,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -43,7 +45,7 @@ fun PraiseSection(
 
         TakenokoCharacterImage(
             screenWidth = screenWidth,
-            painter = painterResource(id = R.drawable.character2),
+            painter = painter,
             modifier = Modifier.weight(1f)
         )
     }
@@ -55,7 +57,8 @@ private fun TopPraiseSectionPreview() {
     TakenokoTheme {
         PraiseSection(
             praiseMessage = "3日連続だね！すごい！！！",
-            screenWidth = 360.dp
+            screenWidth = 360.dp,
+            painter = painterResource(id = R.drawable.character2)
         )
     }
 }
