@@ -15,7 +15,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.rnk0085.android.takenoko.R
 import com.rnk0085.android.takenoko.ui.screen.home.section.BarGraphSection
 import com.rnk0085.android.takenoko.ui.screen.home.section.DateSection
@@ -62,26 +61,29 @@ private fun HomeScreen(
             // 画面サイズを取得
             val screenHeight = with(LocalDensity.current) { constraints.maxHeight.toDp() }
 
-            BarGraphSection(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 8.dp)
-                    .padding(top = 16.dp, bottom = barBottomPadding),
-                dayRecords = dayRecords,
-                barCount = barCount
-            )
-
-            Column(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                DateSection(
+            if (uiState.dayRecords.isNotEmpty()) {
+                // TODO: dayRecords が空だった場合にエラーが起きる
+                BarGraphSection(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = screenHeight - barBottomPadding)
-                        .padding(horizontal = 8.dp, vertical = 4.dp),
+                        .padding(horizontal = 8.dp)
+                        .padding(top = 16.dp, bottom = barBottomPadding),
                     dayRecords = dayRecords,
                     barCount = barCount
                 )
+
+                Column(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    DateSection(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = screenHeight - barBottomPadding)
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
+                        dayRecords = dayRecords,
+                        barCount = barCount
+                    )
+                }
             }
         }
     }
@@ -89,7 +91,7 @@ private fun HomeScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewRect() {
+fun PreviewHomeScreen() {
     TakenokoTheme {
         HomeScreen(
             uiState = HomeUiState.InitialValue,
