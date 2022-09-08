@@ -57,6 +57,12 @@ class GetStudyRecordsUseCase @Inject constructor() {
                 ),
                 StudyRecord(
                     studyTime = 500,
+                    doneMessage = "takenokoアプリを開いた！",
+                    createdAt = Date(1662800000000),
+                    updatedAt = Date(1662800000000)
+                ),
+                StudyRecord(
+                    studyTime = 500,
                     doneMessage = "課題に取り組んだ！",
                     createdAt = Date(1662700000000),
                     updatedAt = Date(1662700000000)
@@ -79,6 +85,48 @@ class GetStudyRecordsUseCase @Inject constructor() {
                     createdAt = Date(1662700000000),
                     updatedAt = Date(1662700000000)
                 ),
+                StudyRecord(
+                    studyTime = 500,
+                    doneMessage = "takenokoアプリを開いた！",
+                    createdAt = Date(1662700000000),
+                    updatedAt = Date(1662700000000)
+                ),
+                StudyRecord(
+                    studyTime = 500,
+                    doneMessage = "5分作業した！",
+                    createdAt = Date(1662550000000),
+                    updatedAt = Date(1662550000000)
+                ),
+                StudyRecord(
+                    studyTime = 500,
+                    doneMessage = "30分作業した！",
+                    createdAt = Date(1662550000000),
+                    updatedAt = Date(1662550000000)
+                ),
+                StudyRecord(
+                    studyTime = 500,
+                    doneMessage = "10分作業した！",
+                    createdAt = Date(1662550000000),
+                    updatedAt = Date(1662550000000)
+                ),
+                StudyRecord(
+                    studyTime = 500,
+                    doneMessage = "プログラミングをした！",
+                    createdAt = Date(1662550000000),
+                    updatedAt = Date(1662550000000)
+                ),
+                StudyRecord(
+                    studyTime = 500,
+                    doneMessage = "5分作業した！",
+                    createdAt = Date(1662550000000),
+                    updatedAt = Date(1662550000000)
+                ),
+                StudyRecord(
+                    studyTime = 500,
+                    doneMessage = "1時間作業した！",
+                    createdAt = Date(1662550000000),
+                    updatedAt = Date(1662550000000)
+                )
             )
         )
     }
