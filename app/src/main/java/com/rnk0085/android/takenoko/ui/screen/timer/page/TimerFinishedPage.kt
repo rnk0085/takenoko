@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -60,14 +60,28 @@ fun TimerFinishedPage(
             Button(
                 modifier = modifier
                     .fillMaxWidth()
-                    .height(50.dp)
-                    .padding(bottom = 16.dp),
+                    .height(50.dp),
                 onClick = onRecordClick
             ) {
                 Text(
-                    text = "記録する"
+                    text = "「できた！」も記録する"
                 )
             }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            OutlinedButton(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                onClick = onRecordClick
+            ) {
+                Text(
+                    text = "作業時間だけを記録する"
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 
