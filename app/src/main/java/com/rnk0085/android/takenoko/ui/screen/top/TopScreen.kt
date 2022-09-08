@@ -27,11 +27,11 @@ fun TopScreen(
     viewModel: TopViewModel,
     navigateToHome: () -> Unit
 ) {
-   val uiState: TopUiState by viewModel.uiState.collectAsState()
-   TopScreen(
-       uiState = uiState,
-       navigateToHome = navigateToHome
-   )
+    val uiState: TopUiState by viewModel.uiState.collectAsState()
+    TopScreen(
+        uiState = uiState,
+        navigateToHome = navigateToHome
+    )
 }
 
 @Composable

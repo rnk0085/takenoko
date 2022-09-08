@@ -24,7 +24,7 @@ fun TakenokoCharacterImage(
     Image(
         painter = painter,
         contentDescription = contentDescription,
-        modifier = modifier.width(imageWidth),
+        modifier = modifier.width(imageWidth)
     )
 }
 

@@ -19,7 +19,6 @@ import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 @Composable
 fun DoneListTile(
     studyRecord: StudyRecord,

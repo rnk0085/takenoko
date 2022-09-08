@@ -2,7 +2,7 @@ package com.rnk0085.android.takenoko.ui.screen.top
 
 import com.rnk0085.android.takenoko.domain.model.StudyRecord
 
-data class TopUiState (
+data class TopUiState(
     val isLoading: Boolean,
     val isError: Boolean,
     val praiseMessage: String,
