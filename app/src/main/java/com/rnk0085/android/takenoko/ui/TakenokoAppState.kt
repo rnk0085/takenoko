@@ -29,7 +29,7 @@ class TakenokoAppState(
         }
     }
 
-    fun navigateWithPopUpTO(
+    fun navigateWithPopUpTo(
         destination: TakenokoNavigationDestination,
         route: String? = null,
         popUpDestination: TakenokoNavigationDestination
