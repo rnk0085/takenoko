@@ -1,6 +1,7 @@
 package com.rnk0085.android.takenoko.ui.screen.top
 
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,33 +42,36 @@ fun TopScreen(
     ) {
         val screenWidth = with(LocalDensity.current) { constraints.maxWidth.toDp() }
 
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
+        Column(
+            modifier = Modifier.fillMaxSize()
         ) {
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
+            LazyColumn(
+                modifier = Modifier
+                    .padding(8.dp)
+            ) {
+                item {
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                TopPraiseSection(
-                    praiseMessage = uiState.praiseMessage,
-                    screenWidth = screenWidth,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp)
-                )
-            }
+                    TopPraiseSection(
+                        praiseMessage = uiState.praiseMessage,
+                        screenWidth = screenWidth,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                    )
+                }
 
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
+                item {
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                Button(
-                    onClick = navigateToHome,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp)
-                ) {
-                    Text(text = "HOMEへ")
+                    Button(
+                        onClick = navigateToHome,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                    ) {
+                        Text(text = "HOMEへ")
+                    }
                 }
             }
         }
