@@ -10,7 +10,8 @@ data class TimerUiState(
     val remainingTime: Duration,
     val timerState: TimerState,
     val openDialog: Boolean,
-    val isError: Boolean
+    val isError: Boolean,
+    val praiseMessage: String?
 ) {
     companion object {
         val InitialValue = TimerUiState(
@@ -18,7 +19,8 @@ data class TimerUiState(
             remainingTime = Duration.ofMinutes(5),
             timerState = TimerState.INITIAL,
             openDialog = false,
-            isError = false
+            isError = false,
+            praiseMessage = null
         )
     }
 }

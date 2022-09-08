@@ -4,6 +4,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rnk0085.android.takenoko.domain.usecase.timer.TimerFinishedPraiseMessageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,9 +16,13 @@ import java.time.Duration
 import javax.inject.Inject
 
 @HiltViewModel
-class TimerViewModel @Inject constructor() : ViewModel() {
+class TimerViewModel @Inject constructor(
+    getTimerFinishedPraiseMessageUseCase: TimerFinishedPraiseMessageUseCase
+) : ViewModel() {
     private val _uiState = MutableStateFlow(TimerUiState.InitialValue)
     private val isErrorFlow = MutableStateFlow(false)
+
+    // TODO: タイマー終了後のメッセージを適切なタイミングで取得する
 
     val uiState: StateFlow<TimerUiState> = combine(_uiState, isErrorFlow) { uiState, isError ->
         TimerUiState(
@@ -25,7 +30,8 @@ class TimerViewModel @Inject constructor() : ViewModel() {
             remainingTime = uiState.remainingTime,
             timerState = uiState.timerState,
             openDialog = uiState.openDialog,
-            isError = isError
+            isError = isError,
+            praiseMessage = getTimerFinishedPraiseMessageUseCase.invoke()
         )
     }.stateIn(
         viewModelScope,
