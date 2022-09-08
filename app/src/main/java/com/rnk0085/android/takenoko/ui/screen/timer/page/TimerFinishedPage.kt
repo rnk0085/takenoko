@@ -14,8 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rnk0085.android.takenoko.ui.screen.top.section.TopPraiseSection
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.time.Duration
 
@@ -23,6 +25,8 @@ import java.time.Duration
 fun TimerFinishedPage(
     onRecordClick: () -> Unit,
     settingTime: Duration,
+    praiseMessage: String,
+    screenWidth: Dp,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -43,7 +47,13 @@ fun TimerFinishedPage(
                 fontSize = 62.sp
             )
 
-            Text(text = "お疲れ様でした！")
+            Spacer(modifier = Modifier.height(32.dp))
+
+            TopPraiseSection(
+                praiseMessage = praiseMessage,
+                screenWidth = screenWidth,
+                modifier = modifier
+            )
         }
 
         item {
@@ -83,7 +93,9 @@ private fun TimerFinishedPagePreview1() {
     TakenokoTheme {
         TimerFinishedPage(
             onRecordClick = {},
-            settingTime = Duration.ofMinutes(5)
+            settingTime = Duration.ofMinutes(5),
+            praiseMessage = "流石！頑張り屋さんだね",
+            screenWidth = 360.dp
         )
     }
 }
@@ -94,7 +106,9 @@ private fun TimerFinishedPagePreview2() {
     TakenokoTheme {
         TimerFinishedPage(
             onRecordClick = {},
-            settingTime = Duration.ofHours(1)
+            settingTime = Duration.ofHours(1),
+            praiseMessage = "流石！頑張り屋さんだね",
+            screenWidth = 360.dp
         )
     }
 }
@@ -105,7 +119,9 @@ private fun TimerFinishedPagePreview3() {
     TakenokoTheme {
         TimerFinishedPage(
             onRecordClick = {},
-            settingTime = Duration.ofMinutes(5).plusHours(1)
+            settingTime = Duration.ofMinutes(5).plusHours(1),
+            praiseMessage = "流石！頑張り屋さんだね",
+            screenWidth = 360.dp
         )
     }
 }
