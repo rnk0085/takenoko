@@ -72,7 +72,7 @@ fun TopScreen(
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp)
                     ) {
-                        Text(text = "HOMEへ")
+                        Text(text = "はじめる")
                     }
                 }
 
