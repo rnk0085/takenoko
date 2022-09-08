@@ -1,5 +1,6 @@
 package com.rnk0085.android.takenoko.ui.screen.top
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -72,6 +74,33 @@ fun TopScreen(
                     ) {
                         Text(text = "HOMEへ")
                     }
+                }
+
+                item {
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Text(
+                        text = "これまでの「できた！」",
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                }
+            }
+
+            LazyColumn(
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .weight(1f),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(uiState.studyRecordList) { studyRecord ->
+                    DoneListTile(
+                        studyRecord = studyRecord,
+                        modifier = Modifier.padding(horizontal = 8.dp)
+                    )
+                }
+
+                item {
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }
