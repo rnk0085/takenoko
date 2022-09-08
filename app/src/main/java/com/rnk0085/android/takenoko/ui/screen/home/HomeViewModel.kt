@@ -18,7 +18,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     getDayRecordsUseCase: GetDayRecordsUseCase
 ) : ViewModel() {
-    // TODO: これ_uiState 要る？
     private val isLoadingFlow = MutableStateFlow(false)
     private val dayRecordsFlow: Flow<List<DayRecord>?> = getDayRecordsUseCase.invoke()
 
