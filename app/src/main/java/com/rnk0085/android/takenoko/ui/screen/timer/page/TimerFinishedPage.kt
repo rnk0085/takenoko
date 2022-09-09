@@ -9,13 +9,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rnk0085.android.takenoko.R
+import com.rnk0085.android.takenoko.ui.component.PraiseSection
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.time.Duration
 
@@ -23,6 +28,8 @@ import java.time.Duration
 fun TimerFinishedPage(
     onRecordClick: () -> Unit,
     settingTime: Duration,
+    praiseMessage: String,
+    screenWidth: Dp,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -43,7 +50,14 @@ fun TimerFinishedPage(
                 fontSize = 62.sp
             )
 
-            Text(text = "お疲れ様でした！")
+            Spacer(modifier = Modifier.height(32.dp))
+
+            PraiseSection(
+                praiseMessage = praiseMessage,
+                screenWidth = screenWidth,
+                painter = painterResource(id = R.drawable.character3),
+                modifier = modifier
+            )
         }
 
         item {
@@ -55,7 +69,19 @@ fun TimerFinishedPage(
                 onClick = onRecordClick
             ) {
                 Text(
-                    text = "記録する"
+                    text = "「できた！」も記録する"
+                )
+            }
+
+            OutlinedButton(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(bottom = 16.dp),
+                onClick = onRecordClick
+            ) {
+                Text(
+                    text = "作業時間だけを記録する"
                 )
             }
         }
@@ -83,7 +109,9 @@ private fun TimerFinishedPagePreview1() {
     TakenokoTheme {
         TimerFinishedPage(
             onRecordClick = {},
-            settingTime = Duration.ofMinutes(5)
+            settingTime = Duration.ofMinutes(5),
+            praiseMessage = "流石！頑張り屋さんだね",
+            screenWidth = 360.dp
         )
     }
 }
@@ -94,7 +122,9 @@ private fun TimerFinishedPagePreview2() {
     TakenokoTheme {
         TimerFinishedPage(
             onRecordClick = {},
-            settingTime = Duration.ofHours(1)
+            settingTime = Duration.ofHours(1),
+            praiseMessage = "流石！頑張り屋さんだね",
+            screenWidth = 360.dp
         )
     }
 }
@@ -105,7 +135,9 @@ private fun TimerFinishedPagePreview3() {
     TakenokoTheme {
         TimerFinishedPage(
             onRecordClick = {},
-            settingTime = Duration.ofMinutes(5).plusHours(1)
+            settingTime = Duration.ofMinutes(5).plusHours(1),
+            praiseMessage = "流石！頑張り屋さんだね",
+            screenWidth = 360.dp
         )
     }
 }

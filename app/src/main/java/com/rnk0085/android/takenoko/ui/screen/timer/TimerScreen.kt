@@ -1,12 +1,14 @@
 package com.rnk0085.android.takenoko.ui.screen.timer
 
 import android.util.Log
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.android.takenoko.ui.screen.timer.page.TimerFinishedPage
@@ -48,7 +50,10 @@ private fun TimerScreen(
     closeDialog: () -> Unit,
     onCancelClick: () -> Unit
 ) {
-    Box {
+    BoxWithConstraints(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        val screenWidth = with(LocalDensity.current) { constraints.maxWidth.toDp() }
         // TODO: 自動的に切り替えを行う
         when (uiState.timerState) {
             TimerState.INITIAL -> {
@@ -59,11 +64,16 @@ private fun TimerScreen(
                 )
             }
             TimerState.FINISHED -> {
-                TimerFinishedPage(
-                    onRecordClick = onRecordClick,
-                    settingTime = uiState.settingTime,
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
+                // TODO: タイマー終了後に praiseMessage が取れないことはあるのか？
+                uiState.praiseMessage?.let {
+                    TimerFinishedPage(
+                        onRecordClick = onRecordClick,
+                        settingTime = uiState.settingTime,
+                        praiseMessage = it,
+                        screenWidth = screenWidth,
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+                }
             }
             else -> {
                 // RUNNING & PAUSED
