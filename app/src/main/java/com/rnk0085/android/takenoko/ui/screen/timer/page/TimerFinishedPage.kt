@@ -4,12 +4,8 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rnk0085.android.takenoko.R
 import com.rnk0085.android.takenoko.ui.component.PraiseSection
+import com.rnk0085.android.takenoko.ui.component.TakenokoButton
+import com.rnk0085.android.takenoko.ui.component.TakenokoButtonType
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.time.Duration
 
@@ -61,29 +59,19 @@ fun TimerFinishedPage(
         }
 
         item {
-            Button(
+            TakenokoButton(
+                buttonType = TakenokoButtonType.Normal,
+                text = "「できた！」も記録する",
+                onClick = onRecordClick,
                 modifier = modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-                    .padding(bottom = 16.dp),
-                onClick = onRecordClick
-            ) {
-                Text(
-                    text = "「できた！」も記録する"
-                )
-            }
+            )
 
-            OutlinedButton(
+            TakenokoButton(
+                buttonType = TakenokoButtonType.Outlined,
+                text = "作業時間だけを記録する",
+                onClick = onRecordClick,
                 modifier = modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-                    .padding(bottom = 16.dp),
-                onClick = onRecordClick
-            ) {
-                Text(
-                    text = "作業時間だけを記録する"
-                )
-            }
+            )
         }
     }
 

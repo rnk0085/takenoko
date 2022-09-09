@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import com.chargemap.compose.numberpicker.FullHours
 import com.chargemap.compose.numberpicker.Hours
 import com.chargemap.compose.numberpicker.HoursNumberPicker
+import com.rnk0085.android.takenoko.ui.component.TakenokoButton
+import com.rnk0085.android.takenoko.ui.component.TakenokoButtonType
 import com.rnk0085.android.takenoko.ui.theme.TakenokoInsideBrown
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 import java.time.Duration
@@ -110,18 +112,15 @@ fun TimerSetPage(
 
         item {
             // スタートボタンを押すと、タイマーがセットされ動き出す
-            Button(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-                    .padding(bottom = 16.dp),
+            TakenokoButton(
+                buttonType = TakenokoButtonType.Normal,
+                text = "START",
                 onClick = {
                     onSetTimer(Duration.ofMinutes(pickerValue.minutes.toLong()).plusHours(pickerValue.hours.toLong()))
                 },
-                enabled = pickerValue != FullHours(0, 0)
-            ) {
-                Text(text = "START")
-            }
+                enabled = pickerValue != FullHours(0, 0),
+                modifier = modifier
+            )
         }
     }
 }

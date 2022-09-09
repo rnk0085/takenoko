@@ -5,12 +5,8 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -22,6 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.LifecycleEventObserver
+import com.rnk0085.android.takenoko.ui.component.TakenokoButton
+import com.rnk0085.android.takenoko.ui.component.TakenokoButtonType
 import com.rnk0085.android.takenoko.ui.component.TakenokoDialog
 import com.rnk0085.android.takenoko.ui.screen.timer.TimerState
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
@@ -69,25 +67,19 @@ fun TimerRunningPage(
 
         item {
             if (timerState == TimerState.RUNNING) {
-                OutlinedButton(
+                TakenokoButton(
+                    buttonType = TakenokoButtonType.Outlined,
+                    text = "PAUSED",
+                    onClick = onPauseClick,
                     modifier = modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
-                        .padding(bottom = 16.dp),
-                    onClick = onPauseClick
-                ) {
-                    Text(text = "PAUSED")
-                }
+                )
             } else {
-                Button(
+                TakenokoButton(
+                    buttonType = TakenokoButtonType.Normal,
+                    text = "RESTART",
+                    onClick = onRestartClick,
                     modifier = modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
-                        .padding(bottom = 16.dp),
-                    onClick = onRestartClick
-                ) {
-                    Text(text = "RESTART")
-                }
+                )
             }
         }
     }
