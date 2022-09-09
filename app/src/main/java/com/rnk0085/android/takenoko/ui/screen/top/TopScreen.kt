@@ -51,11 +51,10 @@ fun TopScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             LazyColumn(
-                modifier = Modifier
-                    .padding(8.dp)
+                modifier = Modifier.padding(8.dp)
             ) {
                 item {
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(32.dp))
 
                     PraiseSection(
                         praiseMessage = uiState.praiseMessage,
@@ -79,7 +78,7 @@ fun TopScreen(
                 }
 
                 item {
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(60.dp))
 
                     Text(
                         text = "これまでの「できた！」",
