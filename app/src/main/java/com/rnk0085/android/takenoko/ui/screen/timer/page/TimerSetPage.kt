@@ -73,14 +73,15 @@ fun TimerSetPage(
 
             Row(
                 modifier = modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Button(
                     onClick = { pickerValue = FullHours(0, 5) },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = TakenokoInsideBrown,
                         contentColor = Color.White
-                    )
+                    ),
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "5分")
                 }
@@ -89,7 +90,8 @@ fun TimerSetPage(
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = TakenokoInsideBrown,
                         contentColor = Color.White
-                    )
+                    ),
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "10分")
                 }
@@ -98,7 +100,8 @@ fun TimerSetPage(
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = TakenokoInsideBrown,
                         contentColor = Color.White
-                    )
+                    ),
+                    modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "30分")
                 }
