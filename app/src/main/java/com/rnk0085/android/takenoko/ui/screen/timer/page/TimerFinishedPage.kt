@@ -66,12 +66,16 @@ fun TimerFinishedPage(
                 modifier = modifier
             )
 
+            Spacer(modifier = Modifier.height(8.dp))
+
             TakenokoButton(
                 buttonType = TakenokoButtonType.Outlined,
                 text = "作業時間だけを記録する",
                 onClick = onRecordClick,
                 modifier = modifier
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 

@@ -81,6 +81,8 @@ fun TimerRunningPage(
                     modifier = modifier
                 )
             }
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 

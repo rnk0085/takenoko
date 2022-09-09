@@ -121,6 +121,8 @@ fun TimerSetPage(
                 enabled = pickerValue != FullHours(0, 0),
                 modifier = modifier
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
