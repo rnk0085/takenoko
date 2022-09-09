@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -68,19 +68,26 @@ fun TimerRunningPage(
         }
 
         item {
-            Button(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-                    .padding(bottom = 16.dp),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = if (timerState == TimerState.RUNNING) Color.Red else Color.Green
-                ),
-                onClick = if (timerState == TimerState.RUNNING) onPauseClick else onRestartClick
-            ) {
-                Text(
-                    text = if (timerState == TimerState.RUNNING) "PAUSED" else "RESTART"
-                )
+            if (timerState == TimerState.RUNNING) {
+                OutlinedButton(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .padding(bottom = 16.dp),
+                    onClick = onPauseClick
+                ) {
+                    Text(text = "PAUSED")
+                }
+            } else {
+                Button(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .padding(bottom = 16.dp),
+                    onClick = onRestartClick
+                ) {
+                    Text(text = "RESTART")
+                }
             }
         }
     }
