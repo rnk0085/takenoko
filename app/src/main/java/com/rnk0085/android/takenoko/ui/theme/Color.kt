@@ -14,3 +14,5 @@ val CheekPink = Color(0xFFC55E5C)
 val TakenokoInsideBrown = Color(0xFFC58780)
 val TakenokoLineBrown = Color(0xFF8E4B43)
 val TakenokoBottomCream = Color(0xFFFFD699)
+
+val Orange = Color(0xFFFF5722)
