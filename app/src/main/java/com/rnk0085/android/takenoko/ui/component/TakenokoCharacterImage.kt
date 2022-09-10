@@ -19,8 +19,8 @@ fun TakenokoCharacterImage(
     contentDescription: String? = null,
     modifier: Modifier = Modifier
 ) {
-    // TODO: 「3」の部分を外部で定義する
-    val imageWidth = screenWidth / 3
+    // TODO: 「2.5F」の部分を外部で定義する
+    val imageWidth = screenWidth / 2.5F
     Image(
         painter = painter,
         contentDescription = contentDescription,

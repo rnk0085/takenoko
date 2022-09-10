@@ -8,6 +8,6 @@ class TimerFinishedPraiseMessageUseCase @Inject constructor() {
         Log.d("debug", "TimerFinishedPraiseMessageUseCase")
 
         // TODO: メッセージをランダムに返す
-        return "流石！頑張り屋さんだね"
+        return "流石！\n頑張り屋さんだね"
     }
 }

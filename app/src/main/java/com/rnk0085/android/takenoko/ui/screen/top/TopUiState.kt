@@ -12,7 +12,7 @@ data class TopUiState(
         val InitialValue = TopUiState(
             isLoading = false,
             isError = false,
-            praiseMessage = "天才！",
+            praiseMessage = "",
             studyRecordList = emptyList()
         )
     }

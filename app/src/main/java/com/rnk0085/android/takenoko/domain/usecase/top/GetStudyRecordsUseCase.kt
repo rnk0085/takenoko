@@ -15,6 +15,12 @@ class GetStudyRecordsUseCase @Inject constructor() {
             listOf(
                 StudyRecord(
                     studyTime = 500,
+                    doneMessage = "takenokoアプリを開いた！",
+                    createdAt = Date(1662900000000),
+                    updatedAt = Date(1662900000000)
+                ),
+                StudyRecord(
+                    studyTime = 500,
                     doneMessage = "読書した！",
                     createdAt = Date(1662800000000),
                     updatedAt = Date(1662800000000)

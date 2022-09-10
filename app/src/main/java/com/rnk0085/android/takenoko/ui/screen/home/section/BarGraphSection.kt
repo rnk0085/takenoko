@@ -12,8 +12,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import com.rnk0085.android.takenoko.domain.model.DayRecord
+import com.rnk0085.android.takenoko.ui.theme.Orange
+import com.rnk0085.android.takenoko.ui.theme.TakenokoInsideBrown
 
 @Composable
 fun BarGraphSection(
@@ -57,14 +58,25 @@ fun BarGraphSection(
         }
 
         for (index in 0 until barCount) {
-            drawRect(
-                color = Color.Gray,
-                topLeft = Offset(
-                    x = xSpace * (barCount - index) + barWidth * (barCount - index - 1),
-                    y = calcY(canvasHeight, heightLists[index]) + heightLists[index]
-                ),
-                size = Size(width = barWidth, height = heightLists[index] * -animateHeight)
-            )
+            if (index == 0) {
+                drawRect(
+                    color = Orange,
+                    topLeft = Offset(
+                        x = xSpace * (barCount - index) + barWidth * (barCount - index - 1),
+                        y = calcY(canvasHeight, heightLists[index]) + heightLists[index]
+                    ),
+                    size = Size(width = barWidth, height = heightLists[index] * -animateHeight)
+                )
+            } else {
+                drawRect(
+                    color = TakenokoInsideBrown,
+                    topLeft = Offset(
+                        x = xSpace * (barCount - index) + barWidth * (barCount - index - 1),
+                        y = calcY(canvasHeight, heightLists[index]) + heightLists[index]
+                    ),
+                    size = Size(width = barWidth, height = heightLists[index] * -animateHeight)
+                )
+            }
         }
     }
 }

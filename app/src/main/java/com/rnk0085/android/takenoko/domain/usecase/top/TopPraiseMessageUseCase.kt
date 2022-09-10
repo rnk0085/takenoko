@@ -8,6 +8,6 @@ class TopPraiseMessageUseCase @Inject constructor() {
         Log.d("debug", "TopPraiseMessageUseCase")
 
         // TODO: 条件に応じた褒めるメッセージのランダムで決める
-        return "3日連続だね！すごい！！！"
+        return "3日連続だね！\nすごい！！！"
     }
 }

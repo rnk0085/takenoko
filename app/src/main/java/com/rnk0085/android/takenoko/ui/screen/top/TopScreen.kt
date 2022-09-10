@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -22,6 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rnk0085.android.takenoko.R
 import com.rnk0085.android.takenoko.ui.component.PraiseSection
+import com.rnk0085.android.takenoko.ui.component.TakenokoButton
+import com.rnk0085.android.takenoko.ui.component.TakenokoButtonType
 import com.rnk0085.android.takenoko.ui.theme.TakenokoTheme
 
 @Composable
@@ -50,11 +51,10 @@ fun TopScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             LazyColumn(
-                modifier = Modifier
-                    .padding(8.dp)
+                modifier = Modifier.padding(8.dp)
             ) {
                 item {
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(32.dp))
 
                     PraiseSection(
                         praiseMessage = uiState.praiseMessage,
@@ -69,18 +69,16 @@ fun TopScreen(
                 item {
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    Button(
+                    TakenokoButton(
+                        buttonType = TakenokoButtonType.Normal,
+                        text = "はじめる",
                         onClick = navigateToHome,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 8.dp)
-                    ) {
-                        Text(text = "はじめる")
-                    }
+                        modifier = Modifier.padding(8.dp)
+                    )
                 }
 
                 item {
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(60.dp))
 
                     Text(
                         text = "これまでの「できた！」",
