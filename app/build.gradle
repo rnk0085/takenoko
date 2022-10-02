@@ -54,6 +54,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
+    // https://stackoverflow.com/questions/58671990/repeated-build-fails-to-use-coroutine-features-you-must-add-ktx
+    implementation "androidx.room:room-ktx:$room_version"
 
     // ViewModel utilities for Compose
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
