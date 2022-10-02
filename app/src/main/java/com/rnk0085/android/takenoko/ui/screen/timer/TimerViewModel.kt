@@ -112,9 +112,10 @@ class TimerViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
+                val studyTime = _uiState.value.settingTime.toMillis() - remainingTime!!
                 studyRecordsRepository.insertStudyRecords(
-                    studyTime = _uiState.value.settingTime.toMillis() - remainingTime!!,
-                    doneMessage = ""
+                    studyTime = studyTime,
+                    doneMessage = "勉強時間： $studyTime" // TODO: 今は分かりやすいようにしているだけなので、後々修正する
                 )
                 initializeUiState()
             } catch (e: Exception) {
