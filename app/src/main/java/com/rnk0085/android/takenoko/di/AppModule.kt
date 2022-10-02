@@ -29,5 +29,5 @@ object AppModule {
     @Provides
     fun provideStudyDao(
         database: AppDatabase
-    ) : StudyDao = database.studyDao()
+    ): StudyDao = database.studyDao()
 }

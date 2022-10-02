@@ -13,5 +13,5 @@ abstract class RepositoryModule {
     @Binds
     abstract fun bindStudyRecordsRepository(
         studyRecordsRepositoryImpl: StudyRecordsRepositoryImpl
-    ) : StudyRecordsRepository
+    ): StudyRecordsRepository
 }
