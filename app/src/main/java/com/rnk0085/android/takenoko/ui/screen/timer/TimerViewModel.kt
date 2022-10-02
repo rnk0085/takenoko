@@ -4,6 +4,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rnk0085.android.takenoko.data.repository.StudyRecordsRepository
 import com.rnk0085.android.takenoko.domain.usecase.timer.TimerFinishedPraiseMessageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,12 +13,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import java.time.Duration
 import javax.inject.Inject
 
 @HiltViewModel
 class TimerViewModel @Inject constructor(
-    getTimerFinishedPraiseMessageUseCase: TimerFinishedPraiseMessageUseCase
+    getTimerFinishedPraiseMessageUseCase: TimerFinishedPraiseMessageUseCase,
+    private val studyRecordsRepository: StudyRecordsRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(TimerUiState.InitialValue)
     private val isErrorFlow = MutableStateFlow(false)
@@ -106,7 +109,18 @@ class TimerViewModel @Inject constructor(
     // TODO: 勉強時間を記録する処理を書く
     fun recordStudyTime() {
         Log.d("debug", "recordStudyTime")
-        initializeUiState()
+
+        viewModelScope.launch {
+            try {
+                studyRecordsRepository.insertStudyRecords(
+                    studyTime = _uiState.value.settingTime.toMillis() - remainingTime!!,
+                    doneMessage = ""
+                )
+                initializeUiState()
+            } catch (e: Exception) {
+                Log.d("debug", "recordStudyTime - Exception: $e")
+            }
+        }
     }
 
     fun showDialog() {
