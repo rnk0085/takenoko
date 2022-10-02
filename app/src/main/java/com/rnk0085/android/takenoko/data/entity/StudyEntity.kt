@@ -10,6 +10,9 @@ data class StudyEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
+    @ColumnInfo(name = "study_time")
+    val studyTime: Long,
+
     @ColumnInfo(name = "done_message")
     val doneMessage: String,
 
